@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Blob;
 import java.util.List;
 
 @Entity
@@ -25,6 +26,9 @@ public class Plant {
     private Integer wateringFrequency;
     @Column(nullable = false)
     private Integer sunExposure ;
+    @Lob
+    @Column(nullable = true)
+    private Blob image;
 
     @ManyToOne
     @JoinColumn(name = "botanist_id")

@@ -60,6 +60,7 @@ class AsksService {
   position: relative;
   overflow: hidden;
 }
+
 .card-image img {
   width: 150%;
   position: absolute;

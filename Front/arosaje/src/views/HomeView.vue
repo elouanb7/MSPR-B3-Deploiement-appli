@@ -1,8 +1,12 @@
 <script setup>
-import SearchComponent from '../components/SearchComponent.vue'
+import SearchComponent from "../components/SearchComponent.vue";
 </script>
 
 <template>
+  <link
+    href="https://fonts.googleapis.com/css?family=Montserrat"
+    rel="stylesheet"
+  />
   <main>
     <div class="box">
       <div class="background"></div>
@@ -33,7 +37,7 @@ import SearchComponent from '../components/SearchComponent.vue'
   max-width: 422px;
   width: 100%;
   height: 422px;
-  background: #C5FFDC;
+  background: #c5ffdc;
   filter: blur(125px);
   opacity: 0.25;
 }
@@ -47,23 +51,7 @@ import SearchComponent from '../components/SearchComponent.vue'
   margin-top: 40px;
 }
 
-h1 {
-  font-family: 'Montserrat';
-  font-weight: 700;
-  font-size: 72px;
-  line-height: 88px;
-  color: #060825;
-}
-
-h2 {
-  font-family: 'Montserrat';
-  font-size: 27px;
-  line-height: 33px;
-  color: #060825;
-}
-
 p {
-  font-family: 'Montserrat';
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -78,11 +66,10 @@ p {
   background: #060825;
   box-shadow: 0px 15px 35px rgba(6, 8, 37, 0.2);
   border-radius: 30px;
-  font-family: 'Montserrat';
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  color: #FAFAFA;
+  color: #fafafa;
   cursor: pointer;
   margin: 10px;
 }
