@@ -1,88 +1,61 @@
 <template>
   <div class="card">
-    <div class="container">
-      <div class="card_title"><h2>Plantes</h2></div>
-      <div class="card-image">
-        <img
-          src="https://www.pngmart.com/files/21/Aesthetic-Plant-Transparent-PNG.png"
-        />
+    <RouterLink :to="'/plante/' + plant.id + '/detail'">
+      <div class="container">
+        <div class="card-image">
+          <img
+            src="https://monjardindidees.fr/wp-content/uploads/2022/02/philodendron-678x381.jpg"
+          />
+        </div>
+        <div class="card-title">{{ plant.name }}</div>
       </div>
-      <div class="card-button">
-        <button type="button" class="voirbtn">Voir plus</button>
-      </div>
-    </div>
+    </RouterLink>
   </div>
 </template>
 
-<script>
-export default {
-  name: "PlantCard",
-  data() {
-    return {
-      asks: [],
-    };
-  },
-  methods: {
-    getAsks() {
-      AsksService.getAsks().then((response) => {
-        this.asks = response.data;
-      });
-    },
-  },
-  created() {
-    this.getAsks();
-  },
-};
-
-import axios from "axios";
-
-const ASKS_API_BASE_URL = "http://localhost:8080/api/plants";
-
-class AsksService {
-  getAsks() {
-    return axios.get(ASKS_API_BASE_URL);
-  }
-}
-</script>
-
 <style scoped>
-.card { 
+.card {
   width: 300px;
   margin: 30px;
   background: #ffffff;
   box-shadow: 0px 0px 70px rgba(19, 59, 83, 0.15);
   border-radius: 10px;
-  color: black;
+  color: white;
 }
 
 .card-image {
+  position: absolute;
+  box-shadow: 0px 0px 70px rgba(19, 59, 83, 0.15);
+  border-radius: 10px;
+  width: 300px;
   height: 250px;
-  position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-image img {
-  width: 150%;
   position: absolute;
-  left: -20%;
+  object-fit: cover;
 }
 
 .container {
-  text-align: center; /*1*/
-  padding: 15px 20px; /*2*/
-  box-sizing: border-box; /*3*/
+  height: 250px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.card_title,
-.card-description {
-  font-family: "Playfair Display", serif;
-}
-
-.card-description,
-.card_title {
+.card-title {
   text-align: center;
   text-transform: uppercase;
-  font-weight: bold;
+  position: absolute;
+  margin: 20px;
+  font-size: 18px;
+  color: white;
 }
 
 .card-button button {
@@ -92,3 +65,38 @@ class AsksService {
   color: white;
 }
 </style>
+
+<script>
+// import axios from "axios";
+//
+// const PLANTS_API_BASE_URL = "http://localhost:8080/api/plants";
+
+export default {
+  name: "PlantCard",
+  props: ["plant"],
+  // data() {
+  //   return {
+  //     plants: [],
+  //   };
+  // },
+  // methods: {
+  //   getPlants() {
+  //     axios.get(PLANTS_API_BASE_URL).then((response) => {
+  //       console.log(response.data);
+  //       this.plants = response.data;
+  //     });
+  //   },
+  // },
+  // created() {
+  //   this.getPlants();
+  // },
+};
+
+// class PlantsService {
+//   getPlants() {
+//     let result = axios.get(PLANTS_API_BASE_URL);
+//     console.log(result);
+//     return result;
+//   }
+// }
+</script>

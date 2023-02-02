@@ -1,5 +1,5 @@
 package fr.epsi.b3.arosaje.bo;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","Asks"})
 public class Plant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +37,7 @@ public class Plant {
 
     //ask jointure
     @OneToMany(mappedBy="plant")
-    private List<Ask> Asks;
+    private List<Ask> asks;
 
 
     public Plant() {}
