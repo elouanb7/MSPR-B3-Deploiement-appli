@@ -18,7 +18,9 @@ import SearchComponent from "../components/SearchComponent.vue";
 
         <p>Utiliser A'rosa-je afin de les entretenir</p>
 
-        <button class="explore">Commencer à explorer</button>
+        <a href="">
+          <button class="explore">Commencer à explorer</button>
+        </a>
       </div>
       <SearchComponent />
     </div>

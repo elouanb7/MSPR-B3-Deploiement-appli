@@ -59,8 +59,10 @@
             </div>
         </div>
 
-        <button class="import-image">Importer une photo</button>
-
+        <a href="">
+            <button class="import-image">Importer une photo</button>
+        </a>
+        
         <div class="infos">
             <h3>Description</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Erat quis imperdiet sodales egestas. Neque suspendisse sed accumsan, molestie aliquet.</p>
