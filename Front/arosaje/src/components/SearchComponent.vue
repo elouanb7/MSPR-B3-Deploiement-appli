@@ -1,33 +1,32 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <div class="SearchBar">
-      <h3>Trouver des plantes à proximité</h3>
+    <h3>Trouver des plantes à proximité</h3>
 
-      <div class="buttons">
-        <select>
-          <option value="France">FRANCE</option>
-          <option value="Allemagne">ANGLETERRE</option>
-          <option value="Espagne">ESAPGNE</option>
-          <option value="Portugal">PORTUGAL</option>
-          <option value="Belgique">BELGIQUE</option>
-          <option value="Allemagne">ALLEMAGNE</option>
-          <option value="Italie">ITALIE</option>
-        </select>
+    <div class="buttons">
+      <select>
+        <option value="France">FRANCE</option>
+        <option value="Allemagne">ANGLETERRE</option>
+        <option value="Espagne">ESAPGNE</option>
+        <option value="Portugal">PORTUGAL</option>
+        <option value="Belgique">BELGIQUE</option>
+        <option value="Allemagne">ALLEMAGNE</option>
+        <option value="Italie">ITALIE</option>
+      </select>
 
-        <input type="text" placeholder="Entrez la ville">
+      <input type="text" placeholder="Entrez la ville" />
 
-        <button>Chercher des plantes</button>
-      </div>
+      <button>Chercher des plantes</button>
     </div>
+  </div>
 </template>
 
 <style>
 .SearchBar {
   max-width: 970px;
   width: 100%;
-   background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 0px 70px rgba(19, 59, 83, 0.15);
   border-radius: 10px;
   display: flex;
@@ -48,10 +47,10 @@ select {
   max-width: 340px;
   width: 100%;
   height: 60px;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid #060825;
   border-radius: 5px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
@@ -65,10 +64,10 @@ input {
   min-width: 150px;
   width: 100%;
   height: 60px;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid #060825;
   border-radius: 5px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
@@ -84,11 +83,11 @@ button {
   background: #060825;
   box-shadow: 0px 15px 35px rgba(6, 8, 37, 0.2);
   border-radius: 5px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 5px;
 }
 

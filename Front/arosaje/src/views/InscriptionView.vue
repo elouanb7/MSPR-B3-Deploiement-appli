@@ -27,15 +27,13 @@
       type="password"
     />
     <button class="boutonInscription">S'inscrire</button>
-    <p><router-link to="/connexion">Vous avez déja un compte ?</router-link></p>
+    <p>
+      <router-link to="/connexion">Vous avez déja un compte ?</router-link>
+    </p>
   </div>
 </template>
 
-<script>
-export default {
-  name: "Inscription",
-};
-</script>
+<script></script>
 
 <style scoped>
 .saisieTexte {
@@ -45,6 +43,7 @@ export default {
   width: 200px;
   height: 30px;
 }
+
 .boutonInscription {
   border-color: rgb(3, 34, 76);
   margin: 10px;
