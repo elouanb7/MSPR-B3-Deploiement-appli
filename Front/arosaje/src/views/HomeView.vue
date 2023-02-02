@@ -48,7 +48,7 @@ import SearchComponent from "../components/SearchComponent.vue";
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 100px;
 }
 
 p {

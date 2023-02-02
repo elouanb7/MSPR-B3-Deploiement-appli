@@ -50,7 +50,7 @@ import AskCard from '../components/AskCard.vue'
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 150px;
+  margin-top: 175px;
 }
 
 .cards {
@@ -71,5 +71,6 @@ import AskCard from '../components/AskCard.vue'
     line-height: 20px;
     text-align: center;
     color: #FAFAFA;
+    cursor: pointer;
 }
 </style>
