@@ -35,21 +35,21 @@ export default {
   },*/
 };
 
-import axios from "axios";
+// import axios from "axios";
 
-const ASKS_API_BASE_URL = "http://localhost:8080/api/asks";
+// const ASKS_API_BASE_URL = "http://localhost:8080/api/asks";
 
-class AsksService {
-  getAsks() {
-    return axios.get(ASKS_API_BASE_URL);
-  }
-}
+// class AsksService {
+//   getAsks() {
+//     return axios.get(ASKS_API_BASE_URL);
+//   }
+// }
 </script>
 
 <style scoped>
 .card {
-  width: 200px;
-  margin: 0px auto;
+  width: 300px;
+  margin: 30px;
   background: #ffffff;
   box-shadow: 0px 0px 70px rgba(19, 59, 83, 0.15);
   border-radius: 10px;

@@ -46,9 +46,9 @@ class AsksService {
 </script>
 
 <style scoped>
-.card {
-  width: 200px;
-  margin: 0px auto;
+.card { 
+  width: 300px;
+  margin: 30px;
   background: #ffffff;
   box-shadow: 0px 0px 70px rgba(19, 59, 83, 0.15);
   border-radius: 10px;
