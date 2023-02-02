@@ -30,6 +30,11 @@ const router = createRouter({
       component: () => import("../views/AskListView.vue"),
     },
     {
+      path: '/ask',
+      name: 'ask',
+      component: () => import("../views/AskView.vue"),
+    },
+    {
       path: "/inscription",
       name: "inscription",
       // route level code-splitting

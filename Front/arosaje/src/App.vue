@@ -9,6 +9,7 @@ import NavBar from "@/components/NavbarComponent.vue";
     href="https://fonts.googleapis.com/css?family=Montserrat"
     rel="stylesheet"
   />
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <component
     :is="'script'"
     type="application/javascript"
