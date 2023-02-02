@@ -53,7 +53,7 @@ export default {
   background: #ffffff;
   box-shadow: 0px 0px 70px rgba(19, 59, 83, 0.15);
   border-radius: 10px;
-  color: black;
+  color: var(--main-color);
 }
 
 .card-image {
@@ -73,11 +73,6 @@ export default {
   box-sizing: border-box; /*3*/
 }
 
-.card_title,
-.card-description {
-  font-family: "Playfair Display", serif;
-}
-
 .card-description,
 .card_title {
   text-align: center;
@@ -86,7 +81,7 @@ export default {
 }
 
 .card-button button {
-  background: #060825;
+  background: var(--main-color);
   box-shadow: 0px 15px 35px rgba(6, 8, 37, 0.2);
   border-radius: 5px;
   color: white;
