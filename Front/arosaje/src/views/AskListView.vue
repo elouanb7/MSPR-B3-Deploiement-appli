@@ -22,7 +22,9 @@ import AskCard from '../components/AskCard.vue'
         <AskCard />
       </div>
 
-      <button class="more-ask">Plus de plantes</button>
+      <a href="">
+        <button class="more-ask">Plus de plantes</button>
+      </a>
     </div>
   </main>
 </template>
