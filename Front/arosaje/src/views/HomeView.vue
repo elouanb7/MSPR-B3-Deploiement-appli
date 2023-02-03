@@ -1,5 +1,5 @@
 <script setup>
-import SearchComponent from "../components/SearchComponent.vue";
+import SearchAskComponent from "../components/SearchAskComponent.vue";
 </script>
 
 <template>
@@ -18,11 +18,11 @@ import SearchComponent from "../components/SearchComponent.vue";
 
         <p>Utiliser A'rosa-je afin de les entretenir</p>
 
-        <a href="">
-          <button class="explore">Commencer à explorer</button>
-        </a>
+        <RouterLink to="/carte"
+          ><button class="explore">Commencer à explorer</button></RouterLink
+        >
       </div>
-      <SearchComponent />
+      <SearchAskComponent />
     </div>
   </main>
 </template>

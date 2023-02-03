@@ -2,7 +2,7 @@
   <div id="inscription">
     <h1>Inscription</h1>
 
-    <h3>informations personnelles:</h3>
+    <h3>Informations personnelles :</h3>
 
     <div class="informations">
       <input class="saisie-texte" placeholder="Nom" />

@@ -12,17 +12,11 @@ const router = createRouter({
     {
       path: "/carte",
       name: "carte",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("../views/CarteView.vue"),
     },
     {
       path: "/plantes",
       name: "plantes",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("../views/PlantesView.vue"),
     },
     {
@@ -64,10 +58,12 @@ const router = createRouter({
     {
       path: "/inscription",
       name: "inscription",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("../views/InscriptionView.vue"),
+    },
+    {
+      path: "/plante/:id/detail",
+      name: "plante",
+      component: () => import("../views/DetailPlanteView.vue"),
     },
     {
       path: "/connexion",

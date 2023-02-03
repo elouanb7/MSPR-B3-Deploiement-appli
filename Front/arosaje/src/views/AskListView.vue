@@ -1,12 +1,3 @@
-<script setup>
-import SearchComponent from '../components/SearchComponent.vue'
-import AskCard from '../components/AskCard.vue'
-</script>
-
-<template>
-  <main>
-    <div class="box">
-      <div class="background"></div>
 
       <div class="hometitle">
         <h2>Trouvez une</h2>
