@@ -27,7 +27,7 @@ public class AskController {
     @Autowired
     private CommentaryDAO commentarytRepository;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Ask> fetchPlants(){
         return askRepository.findAll();
     }

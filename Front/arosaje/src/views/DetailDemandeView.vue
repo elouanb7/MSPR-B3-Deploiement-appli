@@ -83,6 +83,13 @@
           date de fin : {{ ask.endDate }}
         </p>
 
+        <h2 class="h2-du-botaniste">Conseils des botanistes</h2>
+        <h3>Fréquence d'arrosage par jour</h3>
+        <p>{{ ask.plant.wateringFrequency }} fois</p>
+
+        <h3>Nombre d'heure exposé au soleil par jour</h3>
+        <p>{{ ask.plant.sunExposure }} heure(s)</p>
+
         <h3>Commentaire</h3>
         <p v-for="(commentary, index) in ask.commentaries" :key="index">
           {{ commentary.commentary }}
@@ -169,7 +176,10 @@ export default {
   max-width: 458px;
   width: 100%;
 }
-
+.h2-du-botaniste {
+  text-align: center;
+  margin: 30px;
+}
 h3 {
   font-weight: 400;
   font-size: 18px;
@@ -354,14 +364,14 @@ body {
 [id="image2"]:checked ~ .container .arrows [for="image1"]::before,
 [id="image3"]:checked ~ .container .arrows [for="image2"]::before {
   content: "";
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/arrow-prev-slideshow.svg);
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/arrow-prev-slideshow.svg");
 }
 
 [id="image1"]:checked ~ .container .arrows [for="image2"]::after,
 [id="image2"]:checked ~ .container .arrows [for="image3"]::after,
 [id="image3"]:checked ~ .container .arrows [for="image1"]::after {
   content: "";
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/arrow-next-slideshow.svg);
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/arrow-next-slideshow.svg");
 }
 
 [id="image1"]:checked ~ .container .dots [for="image1"],
