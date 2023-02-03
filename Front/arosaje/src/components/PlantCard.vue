@@ -1,6 +1,7 @@
 <template>
   <div class="card">
-    <RouterLink :to="'/plante/' + plant.id + '/detail'">
+    <!--    <RouterLink :to="'/plante/' + plant.id + '/detail'">-->
+    <RouterLink :to="{ name: 'plante', params: { id: plant.id } }">
       <div class="container">
         <div class="card-image">
           <img
