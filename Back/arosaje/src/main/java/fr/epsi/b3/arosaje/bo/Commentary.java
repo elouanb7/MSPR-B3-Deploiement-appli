@@ -1,6 +1,8 @@
 package fr.epsi.b3.arosaje.bo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +11,8 @@ import static jakarta.persistence.GenerationType.*;
 @Entity
 @Getter
 @Setter
+@Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","ask"})
 public class Commentary {
     @Id
     @GeneratedValue(strategy= IDENTITY)
