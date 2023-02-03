@@ -1,23 +1,26 @@
 <template>
   <div class="card">
-    <div class="container">
-      <div class="card_title"><h2>Plantes</h2></div>
-      <div class="card-image">
-        <img
-          src="https://www.pngmart.com/files/21/Aesthetic-Plant-Transparent-PNG.png"
-        />
+    <RouterLink :to="{ name: 'demande', params: { id: ask.id } }">
+      <div class="container">
+        <div class="card_title"><h2>Plantes</h2></div>
+        <div class="card-image">
+          <img
+            src="https://www.pngmart.com/files/21/Aesthetic-Plant-Transparent-PNG.png"
+          />
+        </div>
+        <div class="card-description"><p>description</p></div>
+        <div class="card-button">
+          <button type="button" class="voirbtn">Voir plus</button>
+        </div>
       </div>
-      <div class="card-description"><p>description</p></div>
-      <div class="card-button">
-        <button type="button" class="voirbtn">Voir plus</button>
-      </div>
-    </div>
+    </RouterLink>
   </div>
 </template>
 
 <script>
 export default {
   name: "AskCard",
+  props: ["ask"],
   /*data() {
     return {
       asks: [],
@@ -61,6 +64,7 @@ export default {
   position: relative;
   overflow: hidden;
 }
+
 .card-image img {
   width: 150%;
   position: absolute;

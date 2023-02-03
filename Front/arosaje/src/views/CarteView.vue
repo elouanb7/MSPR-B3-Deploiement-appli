@@ -1,6 +1,30 @@
-<script setup>
+<script>
 import SearchAskComponent from "../components/SearchAskComponent.vue";
 import AskCard from "../components/AskCard.vue";
+
+import axios from "axios";
+
+const ASKS_API_BASE_URL = "http://localhost:8080/api/asks";
+
+export default {
+  name: "AskList",
+  components: { SearchAskComponent, AskCard },
+  data() {
+    return {
+      asks: [],
+    };
+  },
+  methods: {
+    getAsks() {
+      axios.get(ASKS_API_BASE_URL).then((response) => {
+        this.asks = response.data;
+      });
+    },
+  },
+  created() {
+    this.getAsks();
+  },
+};
 </script>
 
 <template>
@@ -17,9 +41,7 @@ import AskCard from "../components/AskCard.vue";
       <SearchAskComponent />
 
       <div class="cards">
-        <AskCard />
-        <AskCard />
-        <AskCard />
+        <AskCard v-for="(ask, index) in asks" :key="index" :ask="ask" />
       </div>
       <button class="more-ask">Plus de plantes</button>
     </div>

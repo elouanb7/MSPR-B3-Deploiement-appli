@@ -1,5 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,40 +19,9 @@ const router = createRouter({
       component: () => import("../views/PlantesView.vue"),
     },
     {
-      path: '/ask-list',
-      name: 'asklist',
-      component: () => import("../views/AskListView.vue"),
-    },
-    {
-      path: '/ask',
-      name: 'ask',
-      component: () => import("../views/AskView.vue"),
-    },
-    {
-      path: "/inscription",
-      name: "inscription",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/CarteView.vue"),
-    },
-    {
-      path: "/plantes",
-      name: "plantes",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/PlantesView.vue"),
-    },
-    {
-      path: '/ask-list',
-      name: 'asklist',
-      component: () => import("../views/AskListView.vue"),
-    },
-    {
-      path: '/ask',
-      name: 'ask',
-      component: () => import("../views/AskView.vue"),
+      path: "/connexion",
+      name: "connexion",
+      component: () => import("../views/ConnexionView.vue"),
     },
     {
       path: "/inscription",
@@ -66,12 +34,9 @@ const router = createRouter({
       component: () => import("../views/DetailPlanteView.vue"),
     },
     {
-      path: "/connexion",
-      name: "connexion",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/ConnexionView.vue"),
+      path: "/demande/:id/detail",
+      name: "demande",
+      component: () => import("../views/DetailDemandeView.vue"),
     },
   ],
 });
