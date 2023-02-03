@@ -1,82 +1,129 @@
-<script setup>
-</script>
-
-<template>
+<template xmlns="http://www.w3.org/1999/html">
   <main>
     <div class="box">
-        <div class="background"></div>
+      <div class="background"></div>
 
-        <div class="hometitle">
-            <h1>Nom</h1>
-            <h2>demande de garde</h2>
+      <div class="hometitle">
+        <h1>{{ ask.plant.name }}</h1>
+        <h2>demande de garde</h2>
+      </div>
+
+      <input type="radio" id="image1" name="image" checked />
+      <input type="radio" id="image2" name="image" />
+      <input type="radio" id="image3" name="image" />
+
+      <div class="container">
+        <div class="featured-wrapper">
+          <ul class="featured-list">
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature4.jpg"
+                  alt=""
+                />
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature11.jpg"
+                  alt=""
+                />
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature6.jpg"
+                  alt=""
+                />
+              </figure>
+            </li>
+          </ul>
+          <ul class="arrows">
+            <li>
+              <label for="image1"></label>
+            </li>
+            <li>
+              <label for="image2"></label>
+            </li>
+            <li>
+              <label for="image3"></label>
+            </li>
+          </ul>
+          <ul class="dots">
+            <li>
+              <label for="image1"></label>
+            </li>
+            <li>
+              <label for="image2"></label>
+            </li>
+            <li>
+              <label for="image3"></label>
+            </li>
+          </ul>
         </div>
+      </div>
 
-        <input type="radio" id="image1" name="image" checked>
-        <input type="radio" id="image2" name="image">
-        <input type="radio" id="image3" name="image">
+      <div class="infos">
+        <h3>Description</h3>
+        <p>
+          {{ ask.description }}
+        </p>
 
-        <div class="container">
-            <div class="featured-wrapper">
-                <ul class="featured-list">
-                    <li>
-                        <figure>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature4.jpg" alt="">
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature11.jpg" alt="">
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature6.jpg" alt="">
-                        </figure>
-                    </li>
-                </ul>
-                <ul class="arrows">
-                    <li>
-                        <label for="image1"></label>
-                    </li>
-                    <li>
-                        <label for="image2"></label>
-                    </li>
-                    <li>
-                        <label for="image3"></label>
-                    </li>
-                </ul>
-                <ul class="dots">
-                    <li>
-                        <label for="image1"></label>
-                    </li>
-                    <li>
-                        <label for="image2"></label>
-                    </li>
-                    <li>
-                        <label for="image3"></label>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <h3>Localisation</h3>
+        <p>
+          {{ ask.location.country }} - {{ ask.location.city }} -
+          {{ ask.location.street }}
+        </p>
 
-        <a href="">
-            <button class="import-image">Importer une photo</button>
-        </a>
-        
-        <div class="infos">
-            <h3>Description</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Erat quis imperdiet sodales egestas. Neque suspendisse sed accumsan, molestie aliquet.</p>
+        <h3>Horaires</h3>
+        <p>
+          date de debut : {{ ask.beginDate }} <br />
+          date de fin : {{ ask.endDate }}
+        </p>
 
-            <h3>Localisation</h3>
-            <p>Lorem ipsum</p>
-
-            <h3>Horaires</h3>
-            <p>Lorem ipsum</p>
-        </div>
+        <h3>Commentaire</h3>
+        <p v-for="(commentary, index) in ask.commentaries" :key="index">
+          {{ commentary.commentary }}
+        </p>
+      </div>
     </div>
   </main>
 </template>
 
+<script>
+import axios from "axios";
+
+const ASKS_API_BASE_URL = "http://localhost:8080/api/asks";
+
+export default {
+  name: "DetailDemandeView",
+  props: ["id"],
+  components: {},
+  data() {
+    return {
+      ask: [],
+    };
+  },
+  methods: {
+    getAsk() {
+      axios.get(ASKS_API_BASE_URL + "/" + this.askId).then((response) => {
+        this.ask = response.data;
+        console.log(response.data);
+      });
+    },
+  },
+  computed: {
+    askId() {
+      return this.$route.params.id;
+    },
+  },
+  created() {
+    this.getAsk();
+  },
+};
+</script>
 <style>
 .box {
   display: flex;
@@ -89,7 +136,7 @@
   max-width: 422px;
   width: 100%;
   height: 422px;
-  background: #C5FFDC;
+  background: #c5ffdc;
   filter: blur(125px);
   opacity: 0.25;
 }
@@ -104,41 +151,41 @@
 }
 
 .import-image {
-    width: 210px;
-    height: 60px;
-    background: #060825;
-    box-shadow: 0px 15px 35px rgba(6, 8, 37, 0.2);
-    border-radius: 30px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-    text-align: center;
-    color: #FAFAFA;
-    cursor: pointer;
-    margin: 15px;
+  width: 210px;
+  height: 60px;
+  background: #060825;
+  box-shadow: 0px 15px 35px rgba(6, 8, 37, 0.2);
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: #fafafa;
+  cursor: pointer;
+  margin: 15px;
 }
 
 .infos {
-    max-width: 458px;
-    width: 100%;
+  max-width: 458px;
+  width: 100%;
 }
 
 h3 {
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 27px;
-    color: #171616;
-    margin-top: 15px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #171616;
+  margin-top: 15px;
 }
 
 p {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #515151;
-    border-bottom: 1px solid #3D3B36;
-    padding-bottom: 15px;
-    margin-top: 15px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #515151;
+  border-bottom: 1px solid #3d3b36;
+  padding-bottom: 15px;
+  margin-top: 15px;
 }
 
 :root {
@@ -306,14 +353,14 @@ body {
 [id="image1"]:checked ~ .container .arrows [for="image3"]::before,
 [id="image2"]:checked ~ .container .arrows [for="image1"]::before,
 [id="image3"]:checked ~ .container .arrows [for="image2"]::before {
-  content: '';
+  content: "";
   background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/arrow-prev-slideshow.svg);
 }
 
 [id="image1"]:checked ~ .container .arrows [for="image2"]::after,
 [id="image2"]:checked ~ .container .arrows [for="image3"]::after,
 [id="image3"]:checked ~ .container .arrows [for="image1"]::after {
-  content: '';
+  content: "";
   background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/arrow-next-slideshow.svg);
 }
 
