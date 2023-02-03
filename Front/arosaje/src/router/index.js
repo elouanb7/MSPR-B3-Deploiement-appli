@@ -19,16 +19,6 @@ const router = createRouter({
       component: () => import("../views/PlantesView.vue"),
     },
     {
-      path: '/ask-list',
-      name: 'asklist',
-      component: () => import("../views/AskListView.vue"),
-    },
-    {
-      path: '/ask',
-      name: 'ask',
-      component: () => import("../views/AskView.vue"),
-    },
-    {
       path: "/inscription",
       name: "inscription",
       component: () => import("../views/InscriptionView.vue"),
