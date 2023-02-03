@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","Asks"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","asks"})
 public class Plant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
