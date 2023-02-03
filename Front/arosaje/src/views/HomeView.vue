@@ -11,7 +11,7 @@ import SearchAskComponent from "../components/SearchAskComponent.vue";
     <div class="box">
       <div class="background"></div>
 
-      <div class="hometitle">
+      <div class="home-title">
         <h2>Les</h2>
         <h1>Fleurs</h1>
         <h2>C'est mieux quand ça sent la rose ...</h2>
@@ -44,7 +44,7 @@ import SearchAskComponent from "../components/SearchAskComponent.vue";
   opacity: 0.25;
 }
 
-.hometitle {
+.home-title {
   position: absolute;
   display: flex;
   flex-direction: column;
