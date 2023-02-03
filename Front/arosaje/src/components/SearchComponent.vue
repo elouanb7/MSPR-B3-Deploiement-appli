@@ -5,7 +5,7 @@
     <h3>Trouver des plantes à proximité</h3>
 
     <div class="buttons">
-      <select>
+      <select class="select-country">
         <option value="France">FRANCE</option>
         <option value="Allemagne">ANGLETERRE</option>
         <option value="Espagne">ESAPGNE</option>
@@ -15,9 +15,9 @@
         <option value="Italie">ITALIE</option>
       </select>
 
-      <input type="text" placeholder="Entrez la ville" />
+      <input type="text" placeholder="Entrez la ville" class="saisie-city" />
 
-      <button>Chercher des plantes</button>
+      <a class="search">Chercher des plantes</a>
     </div>
   </div>
 </template>
@@ -43,7 +43,7 @@ h3 {
   margin: 5px;
 }
 
-select {
+.select-country {
   max-width: 340px;
   width: 100%;
   height: 60px;
@@ -59,7 +59,7 @@ select {
   margin: 5px;
 }
 
-input {
+.saisie-city {
   max-width: 340px;
   min-width: 150px;
   width: 100%;
@@ -76,7 +76,7 @@ input {
   margin: 5px;
 }
 
-button {
+.search {
   max-width: 210px;
   width: 100%;
   height: 60px;
