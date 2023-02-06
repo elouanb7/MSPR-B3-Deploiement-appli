@@ -84,6 +84,7 @@ export default {
   flex-wrap: wrap;
   columns: 4;
   align-items: center;
+  justify-content: center;
 }
 
 .more-ask {
