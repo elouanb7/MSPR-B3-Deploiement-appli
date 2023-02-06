@@ -39,7 +39,7 @@ export default {
       </div>
 
       <SearchAskComponent />
-
+      <button class="more-ask">Faire une demande</button>
       <div class="cards">
         <AskCard v-for="(ask, index) in asks" :key="index" :ask="ask" />
       </div>

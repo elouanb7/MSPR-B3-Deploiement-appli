@@ -20,7 +20,7 @@ export default {
       <input type="text" placeholder="" />
       <button>Chercher une plante</button>
     </div>
-    <a href="#" @click="display = !display">
+    <a href="#" @click="display = !display" class="buttons">
       <span v-if="display === false">Afficher la barre de recherche</span>
       <span v-else>Afficher les initiales</span>
     </a>
@@ -47,6 +47,7 @@ export default {
 .buttons {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 h3 {
