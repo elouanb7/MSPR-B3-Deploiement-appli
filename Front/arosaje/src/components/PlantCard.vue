@@ -68,36 +68,8 @@
 </style>
 
 <script>
-// import axios from "axios";
-//
-// const PLANTS_API_BASE_URL = "http://localhost:8080/api/plants";
-
 export default {
   name: "PlantCard",
   props: ["plant"],
-  // data() {
-  //   return {
-  //     plants: [],
-  //   };
-  // },
-  // methods: {
-  //   getPlants() {
-  //     axios.get(PLANTS_API_BASE_URL).then((response) => {
-  //       console.log(response.data);
-  //       this.plants = response.data;
-  //     });
-  //   },
-  // },
-  // created() {
-  //   this.getPlants();
-  // },
 };
-
-// class PlantsService {
-//   getPlants() {
-//     let result = axios.get(PLANTS_API_BASE_URL);
-//     console.log(result);
-//     return result;
-//   }
-// }
 </script>
