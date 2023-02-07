@@ -25,7 +25,7 @@ public class AskController {
     @Autowired
     private LocationDAO locationRepository;
     @Autowired
-    private CommentaryDAO commentarytRepository;
+    private CommentaryDAO commentaryRepository;
 
     @GetMapping("")
     public List<Ask> fetchPlants(){
@@ -37,7 +37,7 @@ public class AskController {
         Ask ask = askRepository.findById(id).get();
         Plant plant = plantRepository.findById(ask.getPlant().getId()).get();
         Location location = locationRepository.findById(ask.getLocation().getId()).get();
-        List<Commentary> commentaries = commentarytRepository.findByAsk(ask);
+        List<Commentary> commentaries = commentaryRepository.findByAsk(ask);
         ask.setPlant(plant);
         ask.setLocation(location);
         ask.setCommentaries(commentaries);

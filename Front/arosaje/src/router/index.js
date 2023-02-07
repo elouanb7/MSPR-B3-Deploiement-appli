@@ -34,6 +34,11 @@ const router = createRouter({
       component: () => import("../views/DetailPlanteView.vue"),
     },
     {
+      path: "/plante/ajout",
+      name: "addPlante",
+      component: () => import("../components/Form/PlantForm.vue"),
+    },
+    {
       path: "/demande/:id/detail",
       name: "demande",
       component: () => import("../views/DetailDemandeView.vue"),

@@ -37,6 +37,9 @@ export default {
         <h1>Plantes</h1>
       </div>
       <SearchPlantComponent />
+      <RouterLink to="/plante/ajout"
+        ><button class="more-ask">Ajouter une plante</button></RouterLink
+      >
       <div class="cards">
         <PlantCard
           v-for="(plant, index) in plants"
@@ -81,6 +84,7 @@ export default {
   flex-wrap: wrap;
   columns: 4;
   align-items: center;
+  justify-content: center;
 }
 
 .more-ask {
