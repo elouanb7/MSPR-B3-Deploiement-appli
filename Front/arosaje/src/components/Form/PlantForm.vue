@@ -40,7 +40,8 @@
 <script>
 import axios from "axios";
 
-import API_BASE_URL from "@/constants";
+import { API_BASE_URL } from "@/constants.js";
+
 export default {
   name: "PlantForm.vue",
   data() {
@@ -50,7 +51,7 @@ export default {
   },
   methods: {
     validateAndSubmit() {
-      let object = {
+      let plant = {
         description: this.description,
         latinName: this.latinName,
         name: this.name,
@@ -59,14 +60,14 @@ export default {
         wateringFrequency: this.wateringFrequency,
         image: null,
       };
-      this.postPlant(object, 2);
+      this.addPlant(plant, 2);
     },
-    postPlant(plant, botanistId) {
+    addPlant(plant, botanistId) {
+      console.log(API_BASE_URL);
       axios
         .post(`${API_BASE_URL}/plant/add?botanistId=${botanistId}`, plant)
         .then((response) => {
           this.plant = response.data;
-          console.log(this.plant);
         });
     },
   },

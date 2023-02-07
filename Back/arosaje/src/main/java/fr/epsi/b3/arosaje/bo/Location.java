@@ -27,10 +27,10 @@ public class Location {
     @Column(length = 20, nullable = false)
     private Integer zipCode;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Double latitude;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Double longitude;
 
     @OneToOne(mappedBy = "location")

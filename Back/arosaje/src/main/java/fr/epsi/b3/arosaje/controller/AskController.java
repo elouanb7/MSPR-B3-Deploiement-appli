@@ -44,6 +44,9 @@ public class AskController {
     @PostMapping("/ask/add")
     public Ask addAsk(@RequestBody Ask ask, @RequestParam("ownerId") Long ownerId) {
         User owner = userRepository.findById(ownerId).orElse(null);
+        Location location = ask.getLocation();
+        locationRepository.save(location);
+        ask.setLocation(location);
         ask.setOwner(owner);
         return askRepository.save(ask);
     }

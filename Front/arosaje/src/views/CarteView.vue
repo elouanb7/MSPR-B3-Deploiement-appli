@@ -39,7 +39,9 @@ export default {
       </div>
 
       <SearchAskComponent />
-      <button class="more-ask">Faire une demande</button>
+      <RouterLink to="/demande/ajout">
+        <button class="more-ask">Faire une demande</button></RouterLink
+      >
       <div class="cards">
         <AskCard v-for="(ask, index) in asks" :key="index" :ask="ask" />
       </div>
