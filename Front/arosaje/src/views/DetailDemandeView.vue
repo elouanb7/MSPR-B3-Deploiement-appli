@@ -1,9 +1,9 @@
 <template xmlns="http://www.w3.org/1999/html">
   <main>
     <div class="box">
-      <div class="background"></div>
+      <div class="All-info"></div>
 
-      <div class="hometitle">
+      <div class="Asktitle">
         <h1>{{ ask.plant.name }}</h1>
         <h2>demande de garde</h2>
       </div>
@@ -138,7 +138,7 @@ export default {
   align-items: center;
 }
 
-.background {
+.All-info {
   position: relative;
   max-width: 422px;
   width: 100%;
@@ -147,8 +147,7 @@ export default {
   filter: blur(125px);
   opacity: 0.25;
 }
-
-.hometitle {
+.Asktitle {
   position: absolute;
   display: flex;
   flex-direction: column;
