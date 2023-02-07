@@ -1,13 +1,7 @@
 package fr.epsi.b3.arosaje.controller;
 
-import fr.epsi.b3.arosaje.bo.Ask;
-import fr.epsi.b3.arosaje.bo.Commentary;
-import fr.epsi.b3.arosaje.bo.Location;
-import fr.epsi.b3.arosaje.bo.Plant;
-import fr.epsi.b3.arosaje.dal.AskDAO;
-import fr.epsi.b3.arosaje.dal.CommentaryDAO;
-import fr.epsi.b3.arosaje.dal.LocationDAO;
-import fr.epsi.b3.arosaje.dal.PlantDAO;
+import fr.epsi.b3.arosaje.bo.*;
+import fr.epsi.b3.arosaje.dal.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,12 +21,15 @@ public class AskController {
     @Autowired
     private CommentaryDAO commentaryRepository;
 
+    @Autowired
+    private UserDAO userRepository;
+
     @GetMapping("asks")
     public List<Ask> fetchAsk(){
         return askRepository.findAll();
     }
 
-    @GetMapping("asks/{id}")
+    @GetMapping("ask/{id}")
     public Ask fetchAsk(@PathVariable long id){
         Ask ask = askRepository.findById(id).get();
         Plant plant = plantRepository.findById(ask.getPlant().getId()).get();
@@ -42,7 +39,13 @@ public class AskController {
         ask.setLocation(location);
         ask.setCommentaries(commentaries);
         return ask;
+    }
 
+    @PostMapping("/ask/add")
+    public Ask addAsk(@RequestBody Ask ask, @RequestParam("ownerId") Long ownerId) {
+        User owner = userRepository.findById(ownerId).orElse(null);
+        ask.setOwner(owner);
+        return askRepository.save(ask);
     }
 
 

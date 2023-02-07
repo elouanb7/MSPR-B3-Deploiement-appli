@@ -27,7 +27,7 @@ import SearchAskComponent from "../components/SearchAskComponent.vue";
   </main>
 </template>
 
-<style>
+<style scoped>
 .box {
   display: flex;
   flex-direction: column;

@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .SearchBar {
   max-width: 970px;
   width: 100%;

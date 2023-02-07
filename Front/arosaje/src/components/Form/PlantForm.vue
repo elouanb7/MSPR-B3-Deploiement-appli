@@ -40,7 +40,7 @@
 <script>
 import axios from "axios";
 
-import Constants from "@/components/constants";
+import API_BASE_URL from "@/constants";
 export default {
   name: "PlantForm.vue",
   data() {
@@ -63,10 +63,7 @@ export default {
     },
     postPlant(plant, botanistId) {
       axios
-        .post(
-          `${Constants.API_BASE_URL}/plant/add?botanistId=${botanistId}`,
-          plant
-        )
+        .post(`${API_BASE_URL}/plant/add?botanistId=${botanistId}`, plant)
         .then((response) => {
           this.plant = response.data;
           console.log(this.plant);

@@ -24,7 +24,7 @@ public class PlantController {
         return plantRepository.findAll();
     }
 
-    @GetMapping("/plants/{id}")
+    @GetMapping("/plant/{id}")
     public Plant fetchPlant(@PathVariable long id) {
         Plant plant = plantRepository.findById(id).get();
         Botanist botanist = botanistRepository.findById(plant.getBotanist().getId()).get();
@@ -37,6 +37,5 @@ public class PlantController {
         Botanist botanist = botanistRepository.findById(botanistId).orElse(null);
         plant.setBotanist(botanist);
         return plantRepository.save(plant);
-
     }
 }
