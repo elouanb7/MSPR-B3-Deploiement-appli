@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/api/asks")
+@RequestMapping("/api")
 @CrossOrigin("http://localhost:5173/")
 public class AskController {
     @Autowired
@@ -27,12 +27,12 @@ public class AskController {
     @Autowired
     private CommentaryDAO commentaryRepository;
 
-    @GetMapping("")
-    public List<Ask> fetchPlants(){
+    @GetMapping("asks")
+    public List<Ask> fetchAsk(){
         return askRepository.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("asks/{id}")
     public Ask fetchAsk(@PathVariable long id){
         Ask ask = askRepository.findById(id).get();
         Plant plant = plantRepository.findById(ask.getPlant().getId()).get();

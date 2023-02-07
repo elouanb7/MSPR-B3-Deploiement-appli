@@ -1,7 +1,6 @@
 package fr.epsi.b3.arosaje.controller;
 
-import fr.epsi.b3.arosaje.bo.Botanist;
-import fr.epsi.b3.arosaje.bo.Plant;
+import fr.epsi.b3.arosaje.bo.*;
 import fr.epsi.b3.arosaje.dal.BotanistDAO;
 import fr.epsi.b3.arosaje.dal.CommentaryDAO;
 import fr.epsi.b3.arosaje.dal.PlantDAO;
@@ -23,6 +22,14 @@ public class PlantController {
     @GetMapping("/plants")
     public List<Plant> fetchPlants(){
         return plantRepository.findAll();
+    }
+
+    @GetMapping("/plants/{id}")
+    public Plant fetchPlant(@PathVariable long id) {
+        Plant plant = plantRepository.findById(id).get();
+        Botanist botanist = botanistRepository.findById(plant.getBotanist().getId()).get();
+        plant.setBotanist(botanist);
+        return plant;
     }
 
     @PostMapping("/plant/add")
