@@ -9,16 +9,6 @@ const router = createRouter({
       component: () => import("../views/HomeView.vue"),
     },
     {
-      path: "/carte",
-      name: "carte",
-      component: () => import("../views/CarteView.vue"),
-    },
-    {
-      path: "/plantes",
-      name: "plantes",
-      component: () => import("../views/PlantesView.vue"),
-    },
-    {
       path: "/connexion",
       name: "connexion",
       component: () => import("../views/ConnexionView.vue"),
@@ -27,6 +17,11 @@ const router = createRouter({
       path: "/inscription",
       name: "inscription",
       component: () => import("../views/InscriptionView.vue"),
+    },
+    {
+      path: "/plantes",
+      name: "plantes",
+      component: () => import("../views/PlantesView.vue"),
     },
     {
       path: "/plante/:id/detail",
@@ -39,9 +34,19 @@ const router = createRouter({
       component: () => import("../components/Form/PlantForm.vue"),
     },
     {
+      path: "/carte",
+      name: "carte",
+      component: () => import("../views/CarteView.vue"),
+    },
+    {
       path: "/demande/:id/detail",
       name: "demande",
       component: () => import("../views/DetailDemandeView.vue"),
+    },
+    {
+      path: "/demande/ajout",
+      name: "addAsk",
+      component: () => import("../components/Form/AskForm.vue"),
     },
   ],
 });
