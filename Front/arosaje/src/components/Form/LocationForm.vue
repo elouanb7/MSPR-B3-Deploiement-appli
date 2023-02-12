@@ -44,12 +44,11 @@ export default {
       this.postLocation(location);
     },
     postLocation(location) {
-      axios.post(`${API_BASE_URL}/locations`, location).then((response) => {
+      axios.post(`${API_BASE_URL}/location/add`, location).then((response) => {
         this.location = response.data;
-        console.log(this.location);
         router.push({
           name: "addDemande",
-          props: { locationId: response.data.id },
+          params: { locationId: response.data.id },
         });
       });
     },
