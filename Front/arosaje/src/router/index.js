@@ -45,8 +45,13 @@ const router = createRouter({
     },
     {
       path: "/demande/ajout",
-      name: "addAsk",
+      name: "addDemande",
       component: () => import("../components/Form/AskForm.vue"),
+    },
+    {
+      path: "/location/ajout",
+      name: "addLocation",
+      component: () => import("../components/Form/LocationForm.vue"),
     },
   ],
 });

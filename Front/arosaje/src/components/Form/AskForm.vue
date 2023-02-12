@@ -19,7 +19,6 @@
           <label>Date de fin</label>
           <input type="date" class="form-control" v-model="endDate" />
         </fieldset>
-        <LocationForm v-model="location"></LocationForm>
         <button type="submit" class="save-button">Save</button>
       </form>
     </div>
@@ -28,13 +27,10 @@
 
 <script>
 import axios from "axios";
-
 import { API_BASE_URL } from "@/constants.js";
-import LocationForm from "@/components/Form/LocationForm.vue";
 
 export default {
   name: "AskForm.vue",
-  components: { LocationForm },
   data() {
     return {
       ask: null,

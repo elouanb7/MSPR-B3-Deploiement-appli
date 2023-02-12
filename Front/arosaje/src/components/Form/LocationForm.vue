@@ -11,22 +11,48 @@
     </fieldset>
     <fieldset class="form-group">
       <label>Rue</label>
-      <input type="date" class="form-control" v-model="street" />
+      <input type="text" class="form-control" v-model="street" />
     </fieldset>
     <fieldset class="form-group">
       <label>Code Postal</label>
-      <input type="date" class="form-control" v-model="zipCode" />
+      <input type="number" class="form-control" v-model="zipCode" />
     </fieldset>
+    <button type="submit" class="save-button">Save</button>
   </form>
 </template>
 
 <script>
+import axios from "axios";
+import { API_BASE_URL } from "@/constants";
+import router from "@/router";
+
 export default {
   name: "LocationForm.vue",
   data() {
     return {
       location: null,
     };
+  },
+  methods: {
+    validateAndSubmit() {
+      let location = {
+        city: this.city,
+        country: this.country,
+        street: this.street,
+        zipCode: this.zipCode,
+      };
+      this.postLocation(location);
+    },
+    postLocation(location) {
+      axios.post(`${API_BASE_URL}/locations`, location).then((response) => {
+        this.location = response.data;
+        console.log(this.location);
+        router.push({
+          name: "addDemande",
+          props: { locationId: response.data.id },
+        });
+      });
+    },
   },
 };
 </script>
