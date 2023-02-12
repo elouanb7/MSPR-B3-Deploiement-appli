@@ -39,7 +39,7 @@ export default {
       </div>
 
       <SearchAskComponent />
-      <RouterLink to="/demande/ajout">
+      <RouterLink to="/location/ajout">
         <button class="more-ask">Faire une demande</button></RouterLink
       >
       <div class="cards">
