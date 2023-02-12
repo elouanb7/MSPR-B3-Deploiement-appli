@@ -7,21 +7,25 @@ const router = createRouter({
       path: "/",
       name: "accueil",
       component: () => import("../views/HomeView.vue"),
+      meta: { title: "Accueil" },
     },
     {
       path: "/connexion",
       name: "connexion",
       component: () => import("../views/ConnexionView.vue"),
+      meta: { title: "Connexion" },
     },
     {
       path: "/inscription",
       name: "inscription",
       component: () => import("../views/InscriptionView.vue"),
+      meta: { title: "Inscription" },
     },
     {
       path: "/plantes",
       name: "plantes",
       component: () => import("../views/PlantesView.vue"),
+      meta: { title: "Liste des plantes" },
     },
     {
       path: "/plante/:id/detail",
@@ -32,11 +36,13 @@ const router = createRouter({
       path: "/plante/ajout",
       name: "addPlante",
       component: () => import("../components/Form/PlantForm.vue"),
+      meta: { title: "Ajout de plante" },
     },
     {
       path: "/carte",
       name: "carte",
       component: () => import("../views/CarteView.vue"),
+      meta: { title: "Liste des demandes" },
     },
     {
       path: "/demande/:id/detail",
@@ -47,13 +53,19 @@ const router = createRouter({
       path: "/demande/ajout",
       name: "addDemande",
       component: () => import("../components/Form/AskForm.vue"),
+      meta: { title: "Ajout de demande" },
     },
     {
       path: "/location/ajout",
       name: "addLocation",
       component: () => import("../components/Form/LocationForm.vue"),
+      meta: { title: "Demande de garde" },
     },
   ],
 });
 
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  next();
+});
 export default router;
