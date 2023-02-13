@@ -38,6 +38,11 @@ const router = createRouter({
       name: "demande",
       component: () => import("../views/DetailDemandeView.vue"),
     },
+    {
+      path: "/my-account",
+      name: "my account",
+      component: () => import("../views/MyAccountView.vue"),
+    },
   ],
 });
 
