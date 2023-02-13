@@ -2,11 +2,11 @@
     <div class="fixed-images-container">
       <div class="fixed-image-left">
         <div class="background-image-left"></div>
-        <img src="../../images/plant-left" alt="left image"/>
+        <img src="@/assets/plant-left.png" alt="left image"/>
       </div>
       <div class="fixed-image-right">
         <div class="background-image-right"></div>
-        <img src="../../images/plant-right" alt="right image"/>
+        <img src="@/assets/plant-right.png" alt="right image"/>
       </div>
     </div>
 </template>
