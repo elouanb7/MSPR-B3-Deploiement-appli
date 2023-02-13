@@ -50,7 +50,7 @@ const router = createRouter({
       component: () => import("../views/DetailDemandeView.vue"),
     },
     {
-      path: "/demande/ajout",
+      path: "/demande/ajout/:locationId",
       name: "addDemande",
       component: () => import("../components/Form/AskForm.vue"),
       meta: { title: "Ajout de demande" },

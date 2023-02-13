@@ -1,23 +1,42 @@
 <template>
-  <form @submit="validateAndSubmit">
+  <form @submit.prevent="validateAndSubmit">
     <div id="location">
-      <h1>Ajout de la localisation </h1>
-
+      <h1>Ajout de la localisation</h1>
       <div class="informations">
         <fieldset class="form-group">
-          <input type="text" placeholder="Ville" class="saisie-texte" v-model="city" />
+          <input
+            type="text"
+            placeholder="Ville"
+            class="saisie-texte"
+            v-model="city"
+          />
         </fieldset>
 
         <fieldset class="form-group">
-          <input type="text" placeholder="Pays" class="saisie-texte" v-model="country" />
+          <input
+            type="text"
+            placeholder="Pays"
+            class="saisie-texte"
+            v-model="country"
+          />
         </fieldset>
 
         <fieldset class="form-group">
-          <input type="text" placeholder="Rue" class="saisie-texte" v-model="street" />
+          <input
+            type="text"
+            placeholder="Rue"
+            class="saisie-texte"
+            v-model="street"
+          />
         </fieldset>
 
         <fieldset class="form-group">
-          <input type="number" placeholder="Code Postal" class="saisie-texte" v-model="zipCode" />
+          <input
+            type="number"
+            placeholder="Code Postal"
+            class="saisie-texte"
+            v-model="zipCode"
+          />
         </fieldset>
       </div>
 
@@ -100,7 +119,7 @@ h1 {
 .saisie-texte {
   width: 210px;
   height: 60px;
-  background: #FAFAFA;
+  background: #fafafa;
   border: 1px solid #060825;
   box-shadow: 0px 15px 35px rgba(6, 8, 37, 0.2);
   border-radius: 30px;
@@ -122,7 +141,7 @@ h1 {
   font-size: 16px;
   line-height: 20px;
   text-align: center;
-  color: #FAFAFA;
+  color: #fafafa;
   cursor: pointer;
   margin: 15px;
 }
