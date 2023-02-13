@@ -1,7 +1,7 @@
 <script setup>
 import { RouterView } from "vue-router";
-
 import NavBar from "@/components/NavbarComponent.vue";
+import ImagesPlant from "@/components/ImagesPlantComponent.vue";
 </script>
 
 <template>
@@ -23,6 +23,7 @@ import NavBar from "@/components/NavbarComponent.vue";
 
   <header></header>
   <NavBar />
+  <ImagesPlant />
   <RouterView />
 </template>
 
