@@ -39,7 +39,9 @@ export default {
       </div>
 
       <SearchAskComponent />
-      <button class="more-ask">Faire une demande</button>
+      <RouterLink to="/location/ajout">
+        <button class="more-ask">Faire une demande</button></RouterLink
+      >
       <div class="cards">
         <AskCard v-for="(ask, index) in asks" :key="index" :ask="ask" />
       </div>
@@ -48,7 +50,7 @@ export default {
   </main>
 </template>
 
-<style>
+<style scoped>
 .box {
   display: flex;
   flex-direction: column;
@@ -93,6 +95,7 @@ export default {
   text-align: center;
   color: #fafafa;
   cursor: pointer;
+  margin-top: 15px;
   margin-bottom: 60px;
 }
 </style>

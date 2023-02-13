@@ -1,71 +1,61 @@
 <template>
   <form @submit="validateAndSubmit">
-    <div id="plant">
-      <h1>Ajout d'une plante</h1>
+    <div id="location">
+      <h1>Ajout de la localisation </h1>
 
       <div class="informations">
         <fieldset class="form-group">
-          <input type="text" placeholder="Description" class="saisie-texte" v-model="description" />
+          <input type="text" placeholder="Ville" class="saisie-texte" v-model="city" />
         </fieldset>
 
         <fieldset class="form-group">
-          <input type="text" placeholder="Nom" class="saisie-texte" v-model="name" />
+          <input type="text" placeholder="Pays" class="saisie-texte" v-model="country" />
         </fieldset>
 
         <fieldset class="form-group">
-          <input type="text" placeholder="Nom Latin" class="saisie-texte" v-model="latinName" />
+          <input type="text" placeholder="Rue" class="saisie-texte" v-model="street" />
         </fieldset>
 
         <fieldset class="form-group">
-          <input type="text" placeholder="Espèce" class="saisie-texte" v-model="species" />
+          <input type="number" placeholder="Code Postal" class="saisie-texte" v-model="zipCode" />
         </fieldset>
-
-        <fieldset class="form-group">
-          <input type="number" placeholder="Exposition au soleil (en h)" class="saisie-texte" min="0" v-model="sunExposure" />
-        </fieldset>
-
-        <fieldset class="form-group">
-          <input type="number" placeholder="Fréquence d'arosage (nombre de fois /j)" class="saisie-texte" min="0" v-model="wateringFrequency" />
-        </fieldset>
-
-        <button type="submit" class="save-button">Sauvegarder</button>
       </div>
+
+      <button type="submit" class="save-button">Sauvegarder</button>
     </div>
   </form>
 </template>
 
 <script>
 import axios from "axios";
-
-import { API_BASE_URL } from "@/constants.js";
+import { API_BASE_URL } from "@/constants";
+import router from "@/router";
 
 export default {
-  name: "PlantForm.vue",
+  name: "LocationForm.vue",
   data() {
     return {
-      plant: null,
+      location: null,
     };
   },
   methods: {
     validateAndSubmit() {
-      let plant = {
-        description: this.description,
-        latinName: this.latinName,
-        name: this.name,
-        species: this.species,
-        sunExposure: this.sunExposure,
-        wateringFrequency: this.wateringFrequency,
-        image: null,
+      let location = {
+        city: this.city,
+        country: this.country,
+        street: this.street,
+        zipCode: this.zipCode,
       };
-      this.addPlant(plant, 2);
+      this.postLocation(location);
     },
-    addPlant(plant, botanistId) {
-      console.log(API_BASE_URL);
-      axios
-        .post(`${API_BASE_URL}/plant/add?botanistId=${botanistId}`, plant)
-        .then((response) => {
-          this.plant = response.data;
+    postLocation(location) {
+      axios.post(`${API_BASE_URL}/location/add`, location).then((response) => {
+        this.location = response.data;
+        router.push({
+          name: "addDemande",
+          params: { locationId: response.data.id },
         });
+      });
     },
   },
 };
@@ -89,7 +79,7 @@ h1 {
   text-align: center;
 }
 
-#plant {
+#location {
   display: flex;
   flex-direction: column;
   justify-content: center;

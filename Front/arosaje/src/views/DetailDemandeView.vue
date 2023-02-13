@@ -102,7 +102,7 @@
 <script>
 import axios from "axios";
 
-const ASKS_API_BASE_URL = "http://localhost:8080/api/asks";
+const ASKS_API_BASE_URL = "http://localhost:8080/api/ask";
 
 export default {
   name: "DetailDemandeView",
@@ -131,7 +131,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .box {
   display: flex;
   flex-direction: column;

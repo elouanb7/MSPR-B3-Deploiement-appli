@@ -24,37 +24,59 @@ export default {
 </script>
 
 <style scoped>
-#center .router-link-active {
-  font-weight: bold;
+/* styles for larger screens */
+@media (min-width: 768px) {
+  nav {
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  #left {
+    font-size: 25px;
+    width: 10rem;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  #right {
+    width: 10rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  #center {
+    display: flex;
+    align-items: center;
+  }
 }
 
-nav {
-  width: 100%;
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 18px;
-  display: flex;
-  justify-content: space-around;
-}
-
-#left {
-  font-size: 25px;
-  width: 10rem;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-}
-
-#right {
-  width: 10rem;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-#center {
-  display: flex;
-  align-items: center;
+/* styles for smaller screens */
+@media (max-width: 767px) {
+  nav {
+    flex-wrap: wrap;
+  }
+  
+  #left,
+  #right,
+  #center {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  #left {
+    font-size: 20px;
+  }
+  
+  #center {
+    margin-top: 1rem;
+  }
 }
 
 nav a.router-link-exact-active {

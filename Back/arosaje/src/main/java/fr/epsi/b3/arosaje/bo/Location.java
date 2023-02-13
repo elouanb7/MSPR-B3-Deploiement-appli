@@ -26,11 +26,9 @@ public class Location {
 
     @Column(length = 20, nullable = false)
     private Integer zipCode;
-
-    @Column(nullable = false)
+    @Column
     private Double latitude;
-
-    @Column(nullable = false)
+    @Column
     private Double longitude;
 
     @OneToOne(mappedBy = "location")
@@ -39,7 +37,7 @@ public class Location {
     public Location(){}
 
     public Location( String country, String city, String street, Integer zipCode, Double longitude, Double latitude ) {
-        this.country = country ;
+        this.country = country;
         this.city = city;
         this.street = street;
         this.zipCode = zipCode;

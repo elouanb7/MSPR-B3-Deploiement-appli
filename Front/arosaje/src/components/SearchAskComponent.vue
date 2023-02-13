@@ -17,12 +17,12 @@
 
       <input type="text" placeholder="Entrez la ville" class="saisie-city" />
 
-      <a class="search">Chercher des plantes</a>
+      <a><button class="search">Chercher des plantes</button></a>
     </div>
   </div>
 </template>
 
-<style>
+<style scoped>
 .SearchBar {
   max-width: 970px;
   width: 100%;
@@ -31,6 +31,7 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 30px;
 }
 
@@ -77,8 +78,7 @@ h3 {
 }
 
 .search {
-  max-width: 210px;
-  width: 100%;
+  width: 210px;
   height: 60px;
   background: #060825;
   box-shadow: 0px 15px 35px rgba(6, 8, 37, 0.2);
@@ -92,6 +92,11 @@ h3 {
 }
 
 @media screen and (max-width: 1024px) {
+  .SearchBar {
+    max-width: 350px;
+    width: 100%;
+  }
+
   .buttons {
     display: flex;
     flex-direction: column;

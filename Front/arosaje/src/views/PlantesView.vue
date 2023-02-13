@@ -53,7 +53,7 @@ export default {
   </main>
 </template>
 
-<style>
+<style scoped>
 .box {
   display: flex;
   flex-direction: column;
@@ -99,6 +99,7 @@ export default {
   text-align: center;
   color: #fafafa;
   cursor: pointer;
+  margin-top: 15px;
   margin-bottom: 60px;
 }
 </style>

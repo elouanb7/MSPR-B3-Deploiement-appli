@@ -35,7 +35,7 @@
 <script>
 import axios from "axios";
 
-const PLANTS_API_BASE_URL = "http://localhost:8080/api/plants";
+const PLANTS_API_BASE_URL = "http://localhost:8080/api/plant";
 
 export default {
   name: "DetailPlanteView",
@@ -87,6 +87,7 @@ p {
   padding-bottom: 15px;
   margin-top: 15px;
 }
+
 .box {
   display: flex;
   flex-direction: column;
