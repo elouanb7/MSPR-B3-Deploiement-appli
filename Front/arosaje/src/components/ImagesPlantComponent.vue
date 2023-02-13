@@ -11,7 +11,7 @@
     </div>
 </template>
   
-<style>
+<style scoped>
   .fixed-images-container {
     position: fixed;
     top: 0;
