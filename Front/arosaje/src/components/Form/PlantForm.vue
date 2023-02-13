@@ -1,40 +1,37 @@
 <template>
-  <div class="box-form">
-    <h2 class="title-form">Plante</h2>
-    <div class="container-form">
-      <form @submit="validateAndSubmit">
+  <form @submit="validateAndSubmit">
+    <div id="plant">
+      <h1>Ajout d'une plante</h1>
+
+      <div class="informations">
         <fieldset class="form-group">
-          <label>Description</label>
-          <input type="text" class="form-control" v-model="description" />
+          <input type="text" placeholder="Description" class="saisie-texte" v-model="description" />
         </fieldset>
+
         <fieldset class="form-group">
-          <label>Nom</label>
-          <input type="text" class="form-control" v-model="name" />
+          <input type="text" placeholder="Nom" class="saisie-texte" v-model="name" />
         </fieldset>
+
         <fieldset class="form-group">
-          <label>Nom Latin</label>
-          <input type="text" class="form-control" v-model="latinName" />
+          <input type="text" placeholder="Nom Latin" class="saisie-texte" v-model="latinName" />
         </fieldset>
+
         <fieldset class="form-group">
-          <label>Espèce</label>
-          <input type="text" class="form-control" v-model="species" />
+          <input type="text" placeholder="Espèce" class="saisie-texte" v-model="species" />
         </fieldset>
+
         <fieldset class="form-group">
-          <label>Exposition au soleil (en h)</label>
-          <input type="number" class="form-control" v-model="sunExposure" />
+          <input type="number" placeholder="Exposition au soleil (en h)" class="saisie-texte" min="0" v-model="sunExposure" />
         </fieldset>
+
         <fieldset class="form-group">
-          <label>Fréquence d'arosage (nombre de fois / j)</label>
-          <input
-            type="number"
-            class="form-control"
-            v-model="wateringFrequency"
-          />
+          <input type="number" placeholder="Fréquence d'arosage (nombre de fois /j)" class="saisie-texte" min="0" v-model="wateringFrequency" />
         </fieldset>
-        <button type="submit" class="save-button">Save</button>
-      </form>
+
+        <button type="submit" class="save-button">Sauvegarder</button>
+      </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -75,52 +72,59 @@ export default {
 </script>
 
 <style scoped>
-.box-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.container-form {
-  max-width: 450px;
-  padding: 0 20px;
-  margin-top: 275px;
-}
-
-.title-form {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-top: 175px;
-}
-
-form {
-  position: relative;
-  max-width: 422px;
-  width: 100%;
-  height: 422px;
-}
-
 fieldset {
   border: none;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: #515151;
-  border-bottom: 1px solid #3d3b36;
-  padding-bottom: 15px;
-  margin-top: 15px;
 }
 
 input {
   margin: 10px;
 }
 
+h1 {
+  font-size: 45px;
+  text-align: center;
+}
+
+#plant {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px;
+}
+
+.informations {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.saisie-texte {
+  width: 210px;
+  height: 60px;
+  background: #FAFAFA;
+  border: 1px solid #060825;
+  box-shadow: 0px 15px 35px rgba(6, 8, 37, 0.2);
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: rgba(6, 8, 37, 0.5);
+  margin: 15px;
+}
+
 .save-button {
-  width: 190px;
-  height: 50px;
+  width: 210px;
+  height: 60px;
   background: #060825;
   box-shadow: 0px 15px 35px rgba(6, 8, 37, 0.2);
   border-radius: 30px;
@@ -128,7 +132,8 @@ input {
   font-size: 16px;
   line-height: 20px;
   text-align: center;
-  color: #fafafa;
+  color: #FAFAFA;
+  cursor: pointer;
   margin: 15px;
 }
 </style>

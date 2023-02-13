@@ -41,6 +41,7 @@
   line-height: 20px;
   text-align: center;
   color: #FAFAFA;
+  cursor: pointer;
   margin: 15px;
 }
 
