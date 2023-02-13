@@ -2,25 +2,14 @@
     <div class="fixed-images-container">
       <div class="fixed-image-left">
         <div class="background-image-left"></div>
-        <img :src="leftImage" alt="left image"/>
+        <img src="../../images/plant-left" alt="left image"/>
       </div>
       <div class="fixed-image-right">
         <div class="background-image-right"></div>
-        <img :src="rightImage" alt="right image"/>
+        <img src="../../images/plant-right" alt="right image"/>
       </div>
     </div>
 </template>
-  
-<script>
-  export default {
-    data() {
-      return {
-        leftImage: "/images/plant-left",
-        rightImage: "/images/plant-right"
-      };
-    }
-  };
-</script>
   
 <style>
   .fixed-images-container {
