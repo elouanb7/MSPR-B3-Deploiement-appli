@@ -17,8 +17,8 @@ public class AuthenticationService {
         this.jwtUtils = jwtUtils;
     }
 
-    public String authenticate(String username, String password) {
-        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByUsername(username));
+    public String authenticate(String email, String password) {
+        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByEmail(email));
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             if (user.getPassword().equals(password)) {
