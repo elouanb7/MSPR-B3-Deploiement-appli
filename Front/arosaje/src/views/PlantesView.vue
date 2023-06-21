@@ -37,9 +37,9 @@ export default {
         <h1>Plantes</h1>
       </div>
       <SearchPlantComponent />
-      <RouterLink to="/plante/ajout"
-        ><button class="more-ask">Ajouter une plante</button></RouterLink
-      >
+      <RouterLink to="/plante/ajout">
+        <button class="more-ask">Ajouter une plante</button>
+      </RouterLink>
       <div class="cards">
         <PlantCard
           v-for="(plant, index) in plants"

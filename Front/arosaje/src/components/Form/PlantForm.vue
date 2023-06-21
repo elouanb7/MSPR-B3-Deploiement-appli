@@ -5,27 +5,59 @@
 
       <div class="informations">
         <fieldset class="form-group">
-          <input type="text" placeholder="Description" class="saisie-texte" v-model="description" />
+          <input
+            type="text"
+            placeholder="Description"
+            class="saisie-texte"
+            v-model="description"
+          />
         </fieldset>
 
         <fieldset class="form-group">
-          <input type="text" placeholder="Nom" class="saisie-texte" v-model="name" />
+          <input
+            type="text"
+            placeholder="Nom"
+            class="saisie-texte"
+            v-model="name"
+          />
         </fieldset>
 
         <fieldset class="form-group">
-          <input type="text" placeholder="Nom Latin" class="saisie-texte" v-model="latinName" />
+          <input
+            type="text"
+            placeholder="Nom Latin"
+            class="saisie-texte"
+            v-model="latinName"
+          />
         </fieldset>
 
         <fieldset class="form-group">
-          <input type="text" placeholder="Espèce" class="saisie-texte" v-model="species" />
+          <input
+            type="text"
+            placeholder="Espèce"
+            class="saisie-texte"
+            v-model="species"
+          />
         </fieldset>
 
         <fieldset class="form-group">
-          <input type="number" placeholder="Exposition au soleil (en h)" class="saisie-texte" min="0" v-model="sunExposure" />
+          <input
+            type="number"
+            placeholder="Exposition au soleil (en h)"
+            class="saisie-texte"
+            min="0"
+            v-model="sunExposure"
+          />
         </fieldset>
 
         <fieldset class="form-group">
-          <input type="number" placeholder="Fréquence d'arosage (nombre de fois /j)" class="saisie-texte" min="0" v-model="wateringFrequency" />
+          <input
+            type="number"
+            placeholder="Fréquence d'arosage (nombre de fois /j)"
+            class="saisie-texte"
+            min="0"
+            v-model="wateringFrequency"
+          />
         </fieldset>
 
         <button type="submit" class="save-button">Sauvegarder</button>
@@ -110,7 +142,7 @@ h1 {
 .saisie-texte {
   width: 210px;
   height: 60px;
-  background: #FAFAFA;
+  background: #fafafa;
   border: 1px solid #060825;
   box-shadow: 0px 15px 35px rgba(6, 8, 37, 0.2);
   border-radius: 30px;
@@ -132,7 +164,7 @@ h1 {
   font-size: 16px;
   line-height: 20px;
   text-align: center;
-  color: #FAFAFA;
+  color: #fafafa;
   cursor: pointer;
   margin: 15px;
 }

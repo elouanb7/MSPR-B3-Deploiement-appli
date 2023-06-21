@@ -1,24 +1,26 @@
 <template>
-    <div id="connexion">
-        <h1>Connexion</h1>
+  <div id="connexion">
+    <h1>Connexion</h1>
 
-        <input class="saisie-texte" placeholder="Email" />
-        <input class="saisie-texte" placeholder="Mot de passe" />
+    <input class="saisie-texte" placeholder="Email" />
+    <input class="saisie-texte" placeholder="Mot de passe" />
 
-        <a href="">
-            <button class="bouton-connexion">Se connecter</button>
-        </a>
-        <p>
-            <router-link to="/inscription" class="link-to-inscription">Vous n'avez pas de compte ?</router-link>
-        </p>  
-    </div>
+    <a href="">
+      <button class="bouton-connexion">Se connecter</button>
+    </a>
+    <p>
+      <router-link to="/inscription" class="link-to-inscription"
+        >Vous n'avez pas de compte ?</router-link
+      >
+    </p>
+  </div>
 </template>
 
 <style scoped>
 .saisie-texte {
   width: 210px;
   height: 60px;
-  background: #FAFAFA;
+  background: #fafafa;
   border: 1px solid #060825;
   box-shadow: 0px 15px 35px rgba(6, 8, 37, 0.2);
   border-radius: 30px;
@@ -40,7 +42,7 @@
   font-size: 16px;
   line-height: 20px;
   text-align: center;
-  color: #FAFAFA;
+  color: #fafafa;
   cursor: pointer;
   margin: 15px;
 }
