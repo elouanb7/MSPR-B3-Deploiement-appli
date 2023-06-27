@@ -47,10 +47,12 @@ public class UserController {
     }
 
     @GetMapping("/check-login")
-    public Map<String, Boolean> checkLogin(@RequestHeader("Authorization") String token) {
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("isLoggedIn", authenticationService.isTokenValid(token));
-        return response;
+    public ResponseEntity<String> checkLogin(@RequestHeader("Authorization") String token) {
+        if (authenticationService.isTokenValid(token)) {
+            return ResponseEntity.ok(token);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
     /*@PostMapping("/logout")
