@@ -1,22 +1,79 @@
 <template>
-  <div id="connexion">
+  <div id="connexion" @submit="validateAndSubmit">
     <h1>Connexion</h1>
+    <form>
+      <input class="saisie-texte" placeholder="Email" v-model="email" />
+      <input
+        class="saisie-texte"
+        placeholder="Mot de passe"
+        v-model="password"
+      />
 
-    <input class="saisie-texte" placeholder="Email" />
-    <input class="saisie-texte" placeholder="Mot de passe" />
-
-    <a href="">
-      <button class="bouton-connexion">Se connecter</button>
-    </a>
-    <p>
-      <router-link to="/inscription" class="link-to-inscription"
-        >Vous n'avez pas de compte ?</router-link
-      >
-    </p>
+      <a href="">
+        <button class="bouton-connexion" type="submit">Se connecter</button>
+      </a>
+      <p>
+        <router-link to="/inscription" class="link-to-inscription"
+          >Vous n'avez pas de compte ?</router-link
+        >
+      </p>
+    </form>
   </div>
 </template>
 
+<script>
+import axios from "axios";
+import { API_BASE_URL } from "@/constants.js";
+import { useUserStore } from "@/stores/user";
+import jwt_decode from "jwt-decode";
+import { useRouter } from "vue-router";
+
+export default {
+  name: "ConnexionView",
+  data() {
+    return {
+      email: null,
+      password: null,
+    };
+  },
+  methods: {
+    validateAndSubmit(event) {
+      event.preventDefault();
+
+      let credentials = {
+        email: this.email,
+        password: this.password,
+      };
+      this.postLogin(credentials);
+    },
+    postLogin(credentials) {
+      axios
+        .post(`${API_BASE_URL}/login`, credentials)
+        .then((response) => {
+          const token = response.data;
+          console.log(token);
+          console.log(jwt_decode(token));
+          this.handleSuccessfulLogin(token);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    handleSuccessfulLogin(token) {
+      const userStore = useUserStore();
+      userStore.setToken(token);
+      const router = useRouter();
+      router.push("/home");
+    },
+  },
+};
+</script>
+
 <style scoped>
+form {
+  display: flex;
+  flex-direction: column;
+}
 .saisie-texte {
   width: 210px;
   height: 60px;

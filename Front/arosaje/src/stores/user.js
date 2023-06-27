@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export const useUserStore = defineStore("user", {
   state: () => ({
     isConnected: false,
+    token: null,
     id: null,
     username: null,
     email: null,
@@ -30,6 +31,9 @@ export const useUserStore = defineStore("user", {
       }
     },
     fetchUserData() {},
+    setToken(token) {
+      this.token = token;
+    },
   },
-  persist: false,
+  persist: true,
 });

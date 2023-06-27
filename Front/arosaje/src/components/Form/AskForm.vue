@@ -66,7 +66,7 @@ import { API_BASE_URL } from "@/constants.js";
 
 const PLANTS_API_BASE_URL = "http://localhost:8080/api/plants";
 export default {
-  name: "AskForm.vue",
+  name: "AskForm",
   data() {
     return {
       ask: null,

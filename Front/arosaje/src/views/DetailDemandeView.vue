@@ -1,4 +1,4 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <main>
     <div class="box">
       <div class="All-info"></div>
@@ -147,6 +147,7 @@ export default {
   filter: blur(125px);
   opacity: 0.25;
 }
+
 .Asktitle {
   position: absolute;
   display: flex;
@@ -175,10 +176,12 @@ export default {
   max-width: 458px;
   width: 100%;
 }
+
 .h2-du-botaniste {
   text-align: center;
   margin: 30px;
 }
+
 h3 {
   font-weight: 400;
   font-size: 18px;
