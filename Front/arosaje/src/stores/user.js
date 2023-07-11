@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import jwt_decode from "jwt-decode";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
@@ -33,6 +34,23 @@ export const useUserStore = defineStore("user", {
     fetchUserData() {},
     setToken(token) {
       this.token = token;
+      this.decodeToken();
+    },
+    decodeToken() {
+      const userInfos = jwt_decode(this.token);
+      this.id = userInfos.userId;
+    },
+    resetState() {
+      this.isConnected = false;
+      this.token = null;
+      this.id = null;
+      this.username = null;
+      this.email = null;
+      this.firstName = null;
+      this.lastName = null;
+      this.birthDate = null;
+      this.registerDate = null;
+      this.type = "guest";
     },
   },
   persist: true,

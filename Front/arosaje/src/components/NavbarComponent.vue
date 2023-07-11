@@ -10,14 +10,29 @@
     </div>
     <div id="right">
       <i class="fa-light fa-bell"></i>
-      <RouterLink to="/connexion"><i class="fa-light fa-user"></i></RouterLink>
+      <RouterLink
+        v-if="userStore.isConnected === true && userStore.id !== null"
+        :to="{ name: 'profil', params: { id: userStore.id } }"
+        ><i class="fa-light fa-user"></i
+      ></RouterLink>
+      <RouterLink v-else to="/connexion"
+        ><i class="fa-light fa-user"></i
+      ></RouterLink>
     </div>
   </nav>
 </template>
 
 <script>
+import { useUserStore } from "@/stores/user";
+
 export default {
   name: "NavBar",
+  setup() {
+    const userStore = useUserStore();
+    return {
+      userStore,
+    };
+  },
 };
 </script>
 

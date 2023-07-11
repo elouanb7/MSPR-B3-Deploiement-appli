@@ -25,8 +25,7 @@
 import axios from "axios";
 import { API_BASE_URL } from "@/constants.js";
 import { useUserStore } from "@/stores/user";
-import jwt_decode from "jwt-decode";
-import { useRouter } from "vue-router";
+import router from "@/router";
 
 export default {
   name: "ConnexionView",
@@ -51,8 +50,6 @@ export default {
         .post(`${API_BASE_URL}/login`, credentials)
         .then((response) => {
           const token = response.data;
-          console.log(token);
-          console.log(jwt_decode(token));
           this.handleSuccessfulLogin(token);
         })
         .catch((error) => {
@@ -62,8 +59,8 @@ export default {
     handleSuccessfulLogin(token) {
       const userStore = useUserStore();
       userStore.setToken(token);
-      const router = useRouter();
-      router.push("/home");
+      userStore.updateConnectionState(true);
+      router.push("/");
     },
   },
 };
