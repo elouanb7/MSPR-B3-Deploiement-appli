@@ -30,6 +30,11 @@ public class ConversationController {
         return conversationRepository.findAll();
     }
 
+    @GetMapping("conversations/user/{userId}")
+    public List<Conversation> fetchUserConversations(@PathVariable long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        return conversationRepository.findByUser1OrUser2(user, user);
+    }
     @GetMapping("conversation/{id}")
     public Conversation fetchConversation(@PathVariable long id) {
         return conversationRepository.findById(id).orElse(null);

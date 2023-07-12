@@ -52,7 +52,34 @@
 </template>
 
 <script>
+import axios from "axios";
+import { API_BASE_URL } from "@/constants";
+import { onMounted } from "vue";
+import { useUserStore } from "@/stores/user";
+
 export default {
+  setup() {
+    const userStore = useUserStore();
+    const fetchUserConversations = () => {
+      axios
+        .get(`${API_BASE_URL}/conversations/user/${userStore.id}`)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          if (
+            error.response &&
+            (error.response.status === 401 || error.response.status === 403)
+          ) {
+            console.log("401 or 403");
+          } else {
+            console.error(error);
+          }
+        });
+    };
+
+    onMounted(fetchUserConversations);
+  },
   data() {
     return {
       selectedUserName: null,
