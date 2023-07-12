@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
+import { hydrateStores } from "@/stores";
 import piniaPluginPersistedState from "pinia-plugin-persistedstate";
 
 import App from "./App.vue";
@@ -15,8 +16,6 @@ pinia.use(piniaPluginPersistedState);
 
 app.use(pinia);
 app.use(router);
-
-app.provide("pinia", pinia);
-
+hydrateStores();
 // Use your store
 app.mount("#app");

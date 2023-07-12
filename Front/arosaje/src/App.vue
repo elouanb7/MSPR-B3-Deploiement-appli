@@ -2,12 +2,6 @@
 import { RouterView } from "vue-router";
 import NavBar from "@/components/NavbarComponent.vue";
 import ImagesPlant from "@/components/ImagesPlantComponent.vue";
-import { useUserStore } from "@/stores/user";
-import { onMounted } from "vue";
-
-const userStore = useUserStore();
-
-userStore.refreshConnectionState();
 </script>
 
 <template>

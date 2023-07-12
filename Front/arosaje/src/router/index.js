@@ -16,6 +16,11 @@ const router = createRouter({
       meta: { title: "Connexion" },
     },
     {
+      path: "/profil/:id",
+      name: "profil",
+      component: () => import("../views/ProfilView.vue"),
+    },
+    {
       path: "/inscription",
       name: "inscription",
       component: () => import("../views/InscriptionView.vue"),

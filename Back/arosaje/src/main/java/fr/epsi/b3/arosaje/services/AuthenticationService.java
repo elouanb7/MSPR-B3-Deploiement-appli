@@ -17,8 +17,8 @@ public class AuthenticationService {
         this.jwtUtils = jwtUtils;
     }
 
-    public String authenticate(String username, String password) {
-        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByUsername(username));
+    public String authenticate(String email, String password) {
+        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByEmail(email));
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             if (user.getPassword().equals(password)) {
@@ -32,7 +32,7 @@ public class AuthenticationService {
         return jwtUtils.verifyJwtToken(token);
     }
 
-    public String extractUserIdFromToken(String token) {
+    public Integer extractUserIdFromToken(String token) {
         return jwtUtils.extractUserIdFromToken(token);
     }
 }

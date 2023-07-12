@@ -10,7 +10,12 @@
     </div>
     <div id="right">
       <i class="fa-light fa-bell"></i>
-      <RouterLink to="/inscription"
+      <RouterLink
+        v-if="userStore.isConnected === true && userStore.id !== null"
+        :to="{ name: 'profil', params: { id: userStore.id } }"
+        ><i class="fa-light fa-user"></i
+      ></RouterLink>
+      <RouterLink v-else to="/connexion"
         ><i class="fa-light fa-user"></i
       ></RouterLink>
     </div>
@@ -18,8 +23,16 @@
 </template>
 
 <script>
+import { useUserStore } from "@/stores/user";
+
 export default {
   name: "NavBar",
+  setup() {
+    const userStore = useUserStore();
+    return {
+      userStore,
+    };
+  },
 };
 </script>
 
@@ -34,7 +47,7 @@ export default {
     display: flex;
     justify-content: space-around;
   }
-  
+
   #left {
     font-size: 25px;
     width: 10rem;
@@ -42,14 +55,14 @@ export default {
     align-items: center;
     font-weight: bold;
   }
-  
+
   #right {
     width: 10rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
   }
-  
+
   #center {
     display: flex;
     align-items: center;
@@ -61,7 +74,7 @@ export default {
   nav {
     flex-wrap: wrap;
   }
-  
+
   #left,
   #right,
   #center {
@@ -69,11 +82,11 @@ export default {
     text-align: center;
     margin-bottom: 1rem;
   }
-  
+
   #left {
     font-size: 20px;
   }
-  
+
   #center {
     margin-top: 1rem;
   }
