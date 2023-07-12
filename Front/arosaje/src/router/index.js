@@ -10,6 +10,12 @@ const router = createRouter({
       meta: { title: "Accueil" },
     },
     {
+      path: "/messages",
+      name: "messages",
+      component: () => import("../views/MessageView.vue"),
+      meta: { title: "Messages" },
+    },
+    {
       path: "/connexion",
       name: "connexion",
       component: () => import("../views/ConnexionView.vue"),
