@@ -164,7 +164,6 @@ public class JwtUtils {
     public Integer extractUserIdFromToken(String token) {
         try {
             DecodedJWT decodedJWT = JWT.decode(token);
-            System.out.println(decodedJWT.getClaim("userId").asInt());
             return decodedJWT.getClaim("userId").asInt();
         } catch (JWTVerificationException exception) {
             // Handle exception if JWT decoding fails
