@@ -54,17 +54,29 @@
 <script>
 import axios from "axios";
 import { API_BASE_URL } from "@/constants";
-import { onMounted } from "vue";
 import { useUserStore } from "@/stores/user";
 
 export default {
-  setup() {
-    const userStore = useUserStore();
-    const fetchUserConversations = () => {
+  data() {
+    return {
+      selectedUserName: null,
+      conversations: [],
+      userStore: useUserStore(),
+    };
+  },
+  created() {
+    this.fetchUserConversations();
+    this.fetchUsernames();
+  },
+  methods: {
+    selectUser(userName) {
+      this.selectedUserName = userName;
+    },
+    fetchUserConversations() {
       axios
-        .get(`${API_BASE_URL}/conversations/user/${userStore.id}`)
+        .get(`${API_BASE_URL}/conversations/user/${this.userStore.id}`)
         .then((response) => {
-          console.log(response.data);
+          this.conversations = response.data;
         })
         .catch((error) => {
           if (
@@ -76,19 +88,32 @@ export default {
             console.error(error);
           }
         });
-    };
-
-    onMounted(fetchUserConversations);
-  },
-  data() {
-    return {
-      selectedUserName: null,
-    };
-  },
-  methods: {
-    selectUser(userName) {
-      this.selectedUserName = userName;
     },
+  },
+  fetchUsernames() {
+    for (var key in this.conversations) {
+      let conversation = this.conversations[key];
+      let userId = conversation.user1_id;
+      if (conversation.user1_id === this.userStore.id) {
+        userId = conversation.user2_id;
+      }
+      axios
+        .get(`${API_BASE_URL}/users/${userId}`)
+        .then((response) => {
+          const user = response.data;
+          this.conversations[key].username = user.username;
+        })
+        .catch((error) => {
+          if (
+            error.response &&
+            (error.response.status === 401 || error.response.status === 403)
+          ) {
+            console.log("401 or 403");
+          } else {
+            console.error(error);
+          }
+        });
+    }
   },
 };
 </script>
