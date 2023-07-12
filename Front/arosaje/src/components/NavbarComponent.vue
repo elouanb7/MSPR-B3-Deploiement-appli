@@ -9,7 +9,17 @@
       <RouterLink to="/plantes">Plantes</RouterLink>
     </div>
     <div id="right">
-      <i class="fa-light fa-bell"></i>
+      <RouterLink
+        v-if="userStore.isConnected === true && userStore.id !== null"
+        to="/messages"
+      >
+        <i class="fa-light fa-bell"></i
+      ></RouterLink>
+      <RouterLink
+        v-if="userStore.isConnected === true && userStore.id !== null"
+        to="/messages"
+        ><i class="fa-light fa-envelope"></i
+      ></RouterLink>
       <RouterLink
         v-if="userStore.isConnected === true && userStore.id !== null"
         :to="{ name: 'profil', params: { id: userStore.id } }"
