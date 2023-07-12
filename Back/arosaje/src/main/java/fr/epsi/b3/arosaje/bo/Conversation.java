@@ -16,12 +16,12 @@ public class Conversation {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "sender_id")
-    private User sender;
+    @JoinColumn(name = "user1_id")
+    private User user1;
 
     @ManyToOne
-    @JoinColumn(name = "receiver_id")
-    private User receiver;
+    @JoinColumn(name = "user2_id")
+    private User user2;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "conv_id")
     private List<Message> messages;

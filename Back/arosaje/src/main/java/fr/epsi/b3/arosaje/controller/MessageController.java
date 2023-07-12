@@ -30,30 +30,33 @@ public class MessageController {
     @Autowired
     private ConversationDAO conversationRepository;
 
-    @GetMapping("messages")
+    @GetMapping("/messages")
     public List<Message> fetchMessages() {
         return messageRepository.findAll();
     }
 
-    @GetMapping("message/{id}")
+    @GetMapping("/message/{id}")
     public Message fetchMessage(@PathVariable long id) {
         return messageRepository.findById(id).orElse(null);
     }
 
-    @PostMapping("/message/add")
-    public Message addMessage(@RequestBody Message message,
+    @PostMapping("/message/send")
+    public Message sendMessage(@RequestBody Message message,
                               @RequestParam("conversationId") Long conversationId,
-                              @RequestParam("senderId") Long senderId) {
+                              @RequestParam("user") Long userId) {
         Conversation conversation = conversationRepository.findById(conversationId).orElse(null);
-        User sender = userRepository.findById(senderId).orElse(null);
+        User sender = userRepository.findById(userId).orElse(null);
 
         message.setDate(LocalDate.now());
         message.setConv_id(conversation);
-        message.setMessage_sender(sender);
+        message.setSender(sender);
 
         return messageRepository.save(message);
     }
 
+
+
+    /*
     private List<Message> messages = new ArrayList<>();
 
     @GetMapping("/new")
@@ -63,7 +66,7 @@ public class MessageController {
                 .filter(message -> !message.isRead()) // Filtrer les messages non lus
                 .collect(Collectors.toList());
         return unreadMessages;
-    }
+    }*/
 
 }
 

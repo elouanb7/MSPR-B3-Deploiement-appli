@@ -42,14 +42,14 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "careTaker")
     private List<Ask> asks_caretaker;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user1")
+    private List<Conversation> conversations_user1;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user2")
+    private List<Conversation> conversations_user2;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
-    private List<Conversation> conversations_sender;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "receiver")
-    private List<Conversation> conversations_receiver;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "message_sender")
-    private List<Message> messages_sender;
+    private List<Message> messages;
 
     public User() {}
 

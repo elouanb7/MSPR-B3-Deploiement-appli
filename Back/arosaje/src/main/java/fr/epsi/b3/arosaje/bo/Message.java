@@ -29,8 +29,8 @@ public class Message {
     private Conversation conv_id;
 
     @ManyToOne
-    @JoinColumn(name = "message_sender")
-    private User message_sender; // Utilisateur émetteur
+    @JoinColumn(name = "sender")
+    private User sender; // Utilisateur émetteur
 
 
 

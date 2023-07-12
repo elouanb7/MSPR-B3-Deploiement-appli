@@ -37,13 +37,13 @@ public class ConversationController {
 
     @PostMapping("/conversation/add")
     public Conversation addConversation(@RequestBody Conversation conversation,
-                                        @RequestParam("senderId") Long senderId,
-                                        @RequestParam("receiverId") Long receiverId) {
-        User sender = userRepository.findById(senderId).orElse(null);
-        User receiver = userRepository.findById(receiverId).orElse(null);
+                                        @RequestParam("user1") Long user1_id,
+                                        @RequestParam("user2") Long user2_id) {
+        User user1 = userRepository.findById(user1_id).orElse(null);
+        User user2 = userRepository.findById(user2_id).orElse(null);
 
-        conversation.setSender(sender);
-        conversation.setReceiver(receiver);
+        conversation.setUser1(user1);
+        conversation.setUser2(user2);
 
         return conversationRepository.save(conversation);
     }
@@ -61,12 +61,12 @@ public class ConversationController {
 /*    @PostMapping("/conversation/{id}/message/add")
     public Message addConversationMessage(@PathVariable long id,
                                           @RequestBody Message message,
-                                          @RequestParam("senderId") Long senderId) {
+                                          @RequestParam("user1") Long user1) {
         Conversation conversation = conversationRepository.findById(id).orElse(null);
-        User sender = userRepository.findById(senderId).orElse(null);
+        User user1 = userRepository.findById(user1).orElse(null);
 
         message.setConv_id(conversation);
-        message.setMessage_sender(sender);
+        message.setMessage_user1(user1);
 
         return messageRepository.save(message);
     }*/
