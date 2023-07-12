@@ -1,6 +1,9 @@
 <template>
   <div id="connexion" @submit="validateAndSubmit">
     <h1>Connexion</h1>
+    <div id="error-message" hidden>
+      Email ou mot de passe inconnu. Veuillez réessayer.
+    </div>
     <form>
       <input class="saisie-texte" placeholder="Email" v-model="email" />
       <input
@@ -53,6 +56,8 @@ export default {
           this.handleSuccessfulLogin(token);
         })
         .catch((error) => {
+          let error_message = document.getElementById("error-message");
+          error_message.removeAttribute("hidden");
           console.error(error);
         });
     },
@@ -84,6 +89,10 @@ form {
   text-align: center;
   color: rgba(6, 8, 37, 0.5);
   margin: 15px;
+}
+
+#error-message {
+  color: red;
 }
 
 .bouton-connexion {

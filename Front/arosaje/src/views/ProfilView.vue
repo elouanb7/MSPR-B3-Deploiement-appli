@@ -17,14 +17,48 @@
 <script>
 import { useUserStore } from "@/stores/user";
 import router from "@/router";
+import { onMounted } from "vue";
+import axios from "axios";
+import { API_BASE_URL } from "@/constants";
 
 export default {
   setup() {
     const userStore = useUserStore();
+
+    if (userStore.isConnected === false) {
+      router.push("/");
+    }
     const logout = () => {
       userStore.resetState();
       router.push("/");
     };
+    const fetchUserData = () => {
+      axios
+        .get(`${API_BASE_URL}/users/${userStore.id}`, {
+          headers: { Authorization: userStore.token },
+        })
+        .then((response) => {
+          const userData = response.data;
+          userStore.username = userData.username;
+          userStore.email = userData.email;
+          userStore.firstName = userData.firstName;
+          userStore.lastName = userData.lastName;
+          userStore.registerDate = userData.registerDate;
+          userStore.birthDate = userData.birthDate;
+        })
+        .catch((error) => {
+          if (
+            error.response &&
+            (error.response.status === 401 || error.response.status === 403)
+          ) {
+            logout();
+          } else {
+            console.error(error);
+          }
+        });
+    };
+
+    onMounted(fetchUserData);
     return {
       userStore,
       logout,
