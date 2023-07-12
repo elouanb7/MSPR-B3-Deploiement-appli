@@ -24,6 +24,6 @@ public class Conversation {
     private User receiver;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "conv_id")
-    private List<Message> message_id;
+    private List<Message> messages;
 
 }

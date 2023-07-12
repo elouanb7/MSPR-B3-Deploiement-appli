@@ -52,13 +52,13 @@ public class ConversationController {
     public List<Message> fetchConversationMessages(@PathVariable long id) {
         Conversation conversation = conversationRepository.findById(id).orElse(null);
         if (conversation != null) {
-            return conversation.getMessage_id();
+            return conversation.getMessages();
         } else {
             return null;
         }
     }
 
-    @PostMapping("/conversation/{id}/message/add")
+/*    @PostMapping("/conversation/{id}/message/add")
     public Message addConversationMessage(@PathVariable long id,
                                           @RequestBody Message message,
                                           @RequestParam("senderId") Long senderId) {
@@ -69,6 +69,6 @@ public class ConversationController {
         message.setMessage_sender(sender);
 
         return messageRepository.save(message);
-    }
+    }*/
 
 }
