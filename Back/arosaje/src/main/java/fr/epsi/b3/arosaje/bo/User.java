@@ -42,6 +42,15 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "careTaker")
     private List<Ask> asks_caretaker;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
+    private List<Conversation> conversations_sender;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recever")
+    private List<Conversation> conversations_recever;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "message_sender")
+    private List<Message> messages_sender;
+
     public User() {}
 
 }
