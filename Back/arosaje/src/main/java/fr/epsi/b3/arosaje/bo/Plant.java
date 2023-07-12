@@ -1,14 +1,16 @@
 package fr.epsi.b3.arosaje.bo;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Blob;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","asks"})
 public class Plant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +27,9 @@ public class Plant {
     private Integer wateringFrequency;
     @Column(nullable = false)
     private Integer sunExposure ;
+    @Lob
+    @Column(nullable = true)
+    private Blob image;
 
     @ManyToOne
     @JoinColumn(name = "botanist_id")
@@ -32,7 +37,7 @@ public class Plant {
 
     //ask jointure
     @OneToMany(mappedBy="plant")
-    private List<Ask> Asks;
+    private List<Ask> asks;
 
 
     public Plant() {}

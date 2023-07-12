@@ -18,9 +18,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 20, nullable = false)
+    @Column(length = 20, nullable = false, unique=true)
     private String username;
-    @Column(nullable = false)
+    @Column(nullable = false, unique=true)
     private String email;
     @Column(length = 500, nullable = false)
     private String password;
@@ -41,6 +41,15 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "careTaker")
     private List<Ask> asks_caretaker;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
+    private List<Conversation> conversations_sender;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "receiver")
+    private List<Conversation> conversations_receiver;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "message_sender")
+    private List<Message> messages_sender;
 
     public User() {}
 

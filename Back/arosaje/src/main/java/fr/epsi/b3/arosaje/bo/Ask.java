@@ -1,6 +1,8 @@
 package fr.epsi.b3.arosaje.bo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +12,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","owner","careTaker"})
 public class Ask {
 
     @Id
