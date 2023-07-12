@@ -75,9 +75,8 @@ public class UserController {
         if (!authenticationService.isTokenValid(token)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-
-        String extractedUserId = authenticationService.extractUserIdFromToken(token);
-        if (extractedUserId != null && parseLong(extractedUserId) ==(userId)) {
+        Integer extractedUserId = authenticationService.extractUserIdFromToken(token);
+        if (extractedUserId != null && extractedUserId == (userId)) {
             Optional<User> optionalUser = userRepository.findById(userId);
             return optionalUser.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
         } else {

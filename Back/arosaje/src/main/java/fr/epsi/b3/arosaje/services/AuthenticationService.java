@@ -32,7 +32,7 @@ public class AuthenticationService {
         return jwtUtils.verifyJwtToken(token);
     }
 
-    public String extractUserIdFromToken(String token) {
+    public Integer extractUserIdFromToken(String token) {
         return jwtUtils.extractUserIdFromToken(token);
     }
 }
