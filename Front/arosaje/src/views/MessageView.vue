@@ -66,7 +66,7 @@ export default {
   },
   created() {
     this.fetchUserConversations();
-    this.fetchUsernames();
+    /*this.fetchUsernames();*/
   },
   methods: {
     selectUser(userName) {
@@ -89,31 +89,31 @@ export default {
           }
         });
     },
-  },
-  fetchUsernames() {
-    for (var key in this.conversations) {
-      let conversation = this.conversations[key];
-      let userId = conversation.user1_id;
-      if (conversation.user1_id === this.userStore.id) {
-        userId = conversation.user2_id;
+    fetchUsernames() {
+      for (var key in this.conversations) {
+        let conversation = this.conversations[key];
+        let userId = conversation.user1_id;
+        if (conversation.user1_id === this.userStore.id) {
+          userId = conversation.user2_id;
+        }
+        axios
+          .get(`${API_BASE_URL}/users/${userId}`)
+          .then((response) => {
+            const user = response.data;
+            this.conversations[key].username = user.username;
+          })
+          .catch((error) => {
+            if (
+              error.response &&
+              (error.response.status === 401 || error.response.status === 403)
+            ) {
+              console.log("401 or 403");
+            } else {
+              console.error(error);
+            }
+          });
       }
-      axios
-        .get(`${API_BASE_URL}/users/${userId}`)
-        .then((response) => {
-          const user = response.data;
-          this.conversations[key].username = user.username;
-        })
-        .catch((error) => {
-          if (
-            error.response &&
-            (error.response.status === 401 || error.response.status === 403)
-          ) {
-            console.log("401 or 403");
-          } else {
-            console.error(error);
-          }
-        });
-    }
+    },
   },
 };
 </script>
