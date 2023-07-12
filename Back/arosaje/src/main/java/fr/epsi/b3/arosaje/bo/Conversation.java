@@ -20,8 +20,8 @@ public class Conversation {
     private User sender;
 
     @ManyToOne
-    @JoinColumn(name = "recever_id")
-    private User recever;
+    @JoinColumn(name = "receiver_id")
+    private User receiver;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "conv_id")
     private List<Message> message_id;
