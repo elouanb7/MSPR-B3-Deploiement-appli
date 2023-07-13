@@ -116,7 +116,7 @@ export default {
   methods: {
     getAsk() {
       axios.get(ASKS_API_BASE_URL + "/" + this.askId).then((response) => {
-        this.ask = response.data;
+        this.ask = response.data["ask"];
         console.log(response.data);
       });
     },
@@ -175,6 +175,7 @@ export default {
 .infos {
   max-width: 458px;
   width: 100%;
+  margin-bottom: 120px;
 }
 
 .h2-du-botaniste {

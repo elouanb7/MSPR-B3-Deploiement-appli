@@ -70,12 +70,14 @@
 import axios from "axios";
 
 import { API_BASE_URL } from "@/constants.js";
+import { useUserStore } from "@/stores/user";
 
 export default {
   name: "PlantForm.vue",
   data() {
     return {
       plant: null,
+      userStore: useUserStore(),
     };
   },
   methods: {
@@ -89,7 +91,7 @@ export default {
         wateringFrequency: this.wateringFrequency,
         image: null,
       };
-      this.addPlant(plant, 2);
+      this.addPlant(plant, this.userStore.id);
     },
     addPlant(plant, botanistId) {
       console.log(API_BASE_URL);

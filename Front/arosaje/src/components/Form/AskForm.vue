@@ -63,6 +63,7 @@
 <script>
 import axios from "axios";
 import { API_BASE_URL } from "@/constants.js";
+import { useUserStore } from "@/stores/user";
 
 const PLANTS_API_BASE_URL = "http://localhost:8080/api/plants";
 export default {
@@ -73,6 +74,7 @@ export default {
       images: [],
       locationId: "",
       plants: [],
+      userStore: useUserStore(),
     };
   },
   created() {
@@ -94,7 +96,7 @@ export default {
         endDate: this.endDate,
         images: this.images,
       };
-      this.postAsk(ask, 2, this.plantSelected, this.locationId);
+      this.postAsk(ask, this.userStore.id, this.plantSelected, this.locationId);
     },
     postAsk(ask, ownerId, plantId, locationId) {
       axios
