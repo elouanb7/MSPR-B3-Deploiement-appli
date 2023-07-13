@@ -5,7 +5,10 @@ import fr.epsi.b3.arosaje.dal.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin("http://localhost:5173/")
@@ -30,15 +33,25 @@ public class AskController {
     }
 
     @GetMapping("ask/{id}")
-    public Ask fetchAsk(@PathVariable long id){
+    public Map<String, Object> fetchAsk(@PathVariable long id){
+        Map<String, Object> response = new HashMap<>();
         Ask ask = askRepository.findById(id).get();
         Plant plant = plantRepository.findById(ask.getPlant().getId()).get();
         Location location = locationRepository.findById(ask.getLocation().getId()).get();
         List<Commentary> commentaries = commentaryRepository.findByAsk(ask);
+        User owner = userRepository.findById(ask.getOwner().getId()).get();
+        User caretaker = userRepository.findById(ask.getCareTaker().getId()).get();
+
+        response.put("ask", ask);
+        response.put("owner", owner);
+        response.put("caretaker", caretaker);
+
+        ask.setOwner(owner);
+        ask.setCareTaker(caretaker);
         ask.setPlant(plant);
         ask.setLocation(location);
         ask.setCommentaries(commentaries);
-        return ask;
+        return response;
     }
 
     @PostMapping("/ask/add")

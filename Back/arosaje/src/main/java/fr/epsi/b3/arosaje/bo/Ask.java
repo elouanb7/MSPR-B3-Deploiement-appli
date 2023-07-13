@@ -45,5 +45,4 @@ public class Ask {
     private Location location;
 
     public Ask() {}
-    // getters and setters
 }
