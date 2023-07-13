@@ -1,51 +1,43 @@
 <template>
   <div class="container">
     <div class="users">
-      <div class="user" @click="selectUser('Utilisateur 1')">
-        <img src="http://fakeimg.pl/300/" alt="User 1" class="user-avatar" />
-        <span class="user-name">Utilisateur 1</span>
-      </div>
-
-      <div class="user" @click="selectUser('Utilisateur 2')">
-        <img src="http://fakeimg.pl/300/" alt="User 2" class="user-avatar" />
-        <span class="user-name">Utilisateur 2</span>
+      <div
+        v-for="conversation in conversations"
+        :key="conversation.id"
+        class="user"
+        @click="selectConversation(conversation.id)"
+      >
+        <img src="https://picsum.photos/200" alt="avatar" class="user-avatar" />
+        <span class="user-name">
+          {{ getOtherUserName(conversation) }}
+        </span>
       </div>
     </div>
-
-    <div class="messages">
-      <div
-        class="message-container1"
-        v-if="selectedUserName === 'Utilisateur 1'"
-      >
-        <span class="message-user-name1">{{ selectedUserName }}</span>
-        <div class="message-user1">
-          <p>Salut comment tu vas ?</p>
+    <div class="messages" v-if="selectedConversation" ref="messagesContainer">
+      <div v-for="message in messages" :key="message.id">
+        <div class="message-container1" v-if="isOtherUserMessage(message)">
+          <span class="message-user-name1">
+            {{ getOtherUserName(selectedConversation) }}
+          </span>
+          <div class="message-user1">
+            <p>{{ message.content }}</p>
+          </div>
+        </div>
+        <div class="message-container2" v-else>
+          <span class="message-user-name2">Moi</span>
+          <div class="message-user2">
+            <p>{{ message.content }}</p>
+          </div>
         </div>
       </div>
-
-      <div
-        class="message-container1"
-        v-if="selectedUserName === 'Utilisateur 2'"
-      >
-        <span class="message-user-name1">{{ selectedUserName }}</span>
-        <div class="message-user1">
-          <p>Hello everybody !</p>
-        </div>
-      </div>
-
-      <div class="message-container2">
-        <span class="message-user-name2">Moi</span>
-        <div class="message-user2">
-          <p>Très bien et toi ?</p>
-        </div>
-      </div>
-
       <div class="saisie-container">
         <input
           type="text"
           placeholder="Envoyer un message"
           class="saisie-message"
+          v-model="messageContent"
         />
+        <button @click="sendMessage">Send</button>
       </div>
     </div>
   </div>
@@ -59,48 +51,65 @@ import { useUserStore } from "@/stores/user";
 export default {
   data() {
     return {
-      selectedUserName: null,
-      conversations: [],
+      selectedConversationId: null,
+      conversations: null,
       userStore: useUserStore(),
+      messageContent: null,
+      messages: null,
     };
   },
   created() {
-    this.fetchUserConversations();
-    /*this.fetchUsernames();*/
+    this.fetchUserConversations().then(() => {
+      if (this.conversations && this.conversations.length > 0) {
+        this.selectedConversationId = this.conversations[0].id;
+        this.fetchConversationMessage();
+      }
+    });
+    setInterval(() => {
+      this.fetchConversationMessage();
+    }, 20000);
   },
   methods: {
-    selectUser(userName) {
-      this.selectedUserName = userName;
+    selectConversation(id) {
+      this.selectedConversationId = id;
+      this.fetchConversationMessage();
     },
-    fetchUserConversations() {
+    sendMessage() {
+      const content = this.messageContent; // Assuming you have a data property called "messageContent" bound to the input field
+      const conversationId = this.selectedConversationId; // Get the selected conversation ID
+      const userId = this.userStore.id; // Get the user ID
+
+      const message = {
+        content,
+        isRead: false,
+      };
+
+      // Make the POST request to send the message
       axios
-        .get(`${API_BASE_URL}/conversations/user/${this.userStore.id}`)
+        .post(`${API_BASE_URL}/message/send`, message, {
+          params: {
+            conversationId: conversationId,
+            userId: userId,
+          },
+        })
         .then((response) => {
-          this.conversations = response.data;
+          // Handle the success response, e.g., update the messages list
+          console.log("Message sent:", response.data);
+          this.fetchConversationMessage();
+          this.messageContent = ""; // Clear the input field
         })
         .catch((error) => {
-          if (
-            error.response &&
-            (error.response.status === 401 || error.response.status === 403)
-          ) {
-            console.log("401 or 403");
-          } else {
-            console.error(error);
-          }
+          // Handle the error
+          console.error("Error sending message:", error);
         });
     },
-    fetchUsernames() {
-      for (var key in this.conversations) {
-        let conversation = this.conversations[key];
-        let userId = conversation.user1_id;
-        if (conversation.user1_id === this.userStore.id) {
-          userId = conversation.user2_id;
-        }
+    fetchUserConversations() {
+      return new Promise((resolve, reject) => {
         axios
-          .get(`${API_BASE_URL}/users/${userId}`)
+          .get(`${API_BASE_URL}/conversations/user/${this.userStore.id}`)
           .then((response) => {
-            const user = response.data;
-            this.conversations[key].username = user.username;
+            this.conversations = response.data;
+            resolve();
           })
           .catch((error) => {
             if (
@@ -111,8 +120,58 @@ export default {
             } else {
               console.error(error);
             }
+            reject(error);
           });
+      });
+    },
+    isOtherUserMessage(message) {
+      return message.sender.id !== this.userStore.id;
+    },
+    fetchConversationMessage() {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(
+            `${API_BASE_URL}/conversation/${this.selectedConversationId}/messages`
+          )
+          .then((response) => {
+            this.messages = response.data;
+            resolve();
+          })
+          .catch((error) => {
+            if (
+              error.response &&
+              (error.response.status === 401 || error.response.status === 403)
+            ) {
+              console.log("401 or 403");
+            } else {
+              console.error(error);
+            }
+            reject(error);
+          });
+      });
+    },
+  },
+  computed: {
+    selectedConversation() {
+      if (this.conversations && this.conversations.length > 0) {
+        return this.conversations.find(
+          (conversation) => conversation.id === this.selectedConversationId
+        );
       }
+      return null;
+    },
+    getOtherUserName() {
+      return (conversation) => {
+        if (conversation.user1.id === this.userStore.id) {
+          return (
+            conversation.user2.firstName + " " + conversation.user2.lastName
+          );
+        } else {
+          return (
+            conversation.user1.firstName + " " + conversation.user1.lastName
+          );
+        }
+      };
     },
   },
 };
@@ -156,11 +215,13 @@ body {
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .user-name {
   font-weight: bold;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .messages {
