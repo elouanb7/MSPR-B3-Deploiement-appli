@@ -1,4 +1,5 @@
 package fr.epsi.b3.arosaje.bo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +24,8 @@ public class Conversation {
     @JoinColumn(name = "user2_id")
     private User user2;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "conv_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "conversation")
+    @JsonIgnore
     private List<Message> messages;
 
 }

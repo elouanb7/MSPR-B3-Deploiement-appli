@@ -1,5 +1,6 @@
 package fr.epsi.b3.arosaje.bo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,18 +38,23 @@ public class User {
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    @JsonIgnore
     private List<Ask> asks_owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "careTaker")
+    @JsonIgnore
     private List<Ask> asks_caretaker;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user1")
+    @JsonIgnore
     private List<Conversation> conversations_user1;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user2")
+    @JsonIgnore
     private List<Conversation> conversations_user2;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
+    @JsonIgnore
     private List<Message> messages;
 
     public User() {}

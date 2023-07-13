@@ -4,9 +4,11 @@ import fr.epsi.b3.arosaje.bo.Message;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import fr.epsi.b3.arosaje.bo.Conversation;
 import fr.epsi.b3.arosaje.bo.User;
 import fr.epsi.b3.arosaje.dal.ConversationDAO;
@@ -14,6 +16,7 @@ import fr.epsi.b3.arosaje.dal.MessageDAO;
 import fr.epsi.b3.arosaje.dal.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalDate;
 
 @RestController
@@ -42,18 +45,17 @@ public class MessageController {
 
     @PostMapping("/message/send")
     public Message sendMessage(@RequestBody Message message,
-                              @RequestParam("conversationId") Long conversationId,
-                              @RequestParam("user") Long userId) {
+                               @RequestParam("conversationId") Long conversationId,
+                               @RequestParam("userId") Long userId) {
         Conversation conversation = conversationRepository.findById(conversationId).orElse(null);
         User sender = userRepository.findById(userId).orElse(null);
 
         message.setDate(LocalDate.now());
-        message.setConv_id(conversation);
+        message.setConversation(conversation);
         message.setSender(sender);
 
         return messageRepository.save(message);
     }
-
 
 
     /*

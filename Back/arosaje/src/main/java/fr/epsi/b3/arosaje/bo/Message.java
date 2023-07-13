@@ -1,5 +1,6 @@
 package fr.epsi.b3.arosaje.bo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +27,7 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "conv_id")
-    private Conversation conv_id;
+    private Conversation conversation;
 
     @ManyToOne
     @JoinColumn(name = "sender")
