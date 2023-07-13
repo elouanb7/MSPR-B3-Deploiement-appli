@@ -37,9 +37,11 @@ public class User {
     private String lastName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    @JsonIgnore
     private List<Ask> asks_owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "careTaker")
+    @JsonIgnore
     private List<Ask> asks_caretaker;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user1")

@@ -40,7 +40,7 @@ public class ConversationController {
         return conversationRepository.findById(id).orElse(null);
     }
 
-    @PostMapping("/conversation/add")
+    @PostMapping("/conversation")
     public Conversation addConversation(@RequestBody Conversation conversation,
                                         @RequestParam("user1") Long user1_id,
                                         @RequestParam("user2") Long user2_id) {

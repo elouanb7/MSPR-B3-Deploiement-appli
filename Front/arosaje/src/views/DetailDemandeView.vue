@@ -66,6 +66,9 @@
       </div>
 
       <div class="infos">
+        <button @click="addConversation">
+          Démarrer la garde <i class="fa-light fa-envelope"></i>
+        </button>
         <h3>Description</h3>
         <p>
           {{ ask.description }}
@@ -101,6 +104,7 @@
 
 <script>
 import axios from "axios";
+import { useUserStore } from "@/stores/user";
 
 const ASKS_API_BASE_URL = "http://localhost:8080/api/ask";
 
@@ -111,14 +115,42 @@ export default {
   data() {
     return {
       ask: [],
+      userStore: useUserStore(),
+      owner: [],
     };
   },
   methods: {
     getAsk() {
       axios.get(ASKS_API_BASE_URL + "/" + this.askId).then((response) => {
         this.ask = response.data["ask"];
+        this.owner = response.data["owner"];
         console.log(response.data);
       });
+    },
+    addConversation() {
+      const user1_id = this.userStore.id;
+      const user2_id = this.owner.id;
+
+      const conversation = {
+        // Définir les autres propriétés de la conversation ici si nécessaire
+      };
+
+      fetch("/conversation?user1=" + user1_id + "&user2=" + user2_id, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(conversation),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Traiter la réponse de la requête ici
+          console.log(data);
+        })
+        .catch((error) => {
+          // Gérer les erreurs de requête ici
+          console.error(error);
+        });
     },
   },
   computed: {
