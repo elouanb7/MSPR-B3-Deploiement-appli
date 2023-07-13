@@ -105,6 +105,7 @@
 <script>
 import axios from "axios";
 import { useUserStore } from "@/stores/user";
+import { API_BASE_URL } from "@/constants";
 
 const ASKS_API_BASE_URL = "http://localhost:8080/api/ask";
 
@@ -132,23 +133,30 @@ export default {
       const user2_id = this.owner.id;
 
       const conversation = {
-        // Définir les autres propriétés de la conversation ici si nécessaire
+        id: null,
+        user1: {
+          id: user1_id,
+        },
+        user2: {
+          id: user2_id,
+        },
+        messages: [],
       };
 
-      fetch("/conversation?user1=" + user1_id + "&user2=" + user2_id, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(conversation),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Traiter la réponse de la requête ici
-          console.log(data);
+      axios
+        .post(`${API_BASE_URL}/conversation`, conversation, {
+          params: {
+            user1: user1_id,
+            user2: user2_id,
+          },
+        })
+        .then((response) => {
+          const addedConversation = response.data;
+          // Process the response here
+          console.log(addedConversation);
         })
         .catch((error) => {
-          // Gérer les erreurs de requête ici
+          // Handle request errors here
           console.error(error);
         });
     },
