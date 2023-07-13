@@ -67,7 +67,7 @@ export default {
     });
     setInterval(() => {
       this.fetchConversationMessage();
-    }, 20000);
+    }, 5000);
   },
   methods: {
     selectConversation(id) {
